@@ -8,13 +8,17 @@ La plataforma está planteada para adaptarse a las necesidades de cada instituci
 
 ## Product Goal
 
-Desarrollar SIDINO, una plataforma modular de gestión escolar construida con Python y Django que permita centralizar los procesos académicos, administrativos y comunicativos de una institución educativa, mediante una interfaz intuitiva, un sistema flexible de roles y permisos, gestión de información segura y mecanismos que permitan trabajar en entornos con conectividad limitada o sin acceso a Internet.
+Desarrollar SIDINO, una plataforma modular de gestión escolar construida para entornos con conectividad limitada o sin acceso a Internet.
 
-El sistema buscará facilitar la gestión institucional, reducir procesos manuales, mejorar la comunicación entre actores y permitir que las instituciones adapten sus funcionalidades según sus necesidades.
-
-## Sprint Goal
-
-Migrar el proyecto SIDINO de Java a Python, utilizando Django como framework principal, y desarrollar los componentes necesarios para su adaptación a esta tecnología, contemplando la gestión de los procesos académicos y administrativos, la seguridad básica, las validaciones de información, la carga masiva de datos, la integración con servicios externos y la generación de reportes estadísticos con filtros multicriterio.
+## Sprint Goals
+Sprint 1 – Preparación de la plataforma institucional
+Establecer las bases de SIDINO para ofrecer una plataforma centralizada que permita organizar la información institucional y facilitar la gestión de los procesos académicos y administrativos.
+Sprint 2 – Acceso y administración institucional
+Ofrecer un acceso organizado y seguro a SIDINO, permitiendo administrar los usuarios institucionales y garantizar que cada integrante de la comunidad educativa disponga de las funcionalidades correspondientes a sus responsabilidades.
+Sprint 3 – Gestión académica integral
+Facilitar la administración de estudiantes, cursos, grupos, asignaturas, docentes y calificaciones, permitiendo centralizar la información académica y mejorar el seguimiento del rendimiento estudiantil.
+Sprint 4 – Seguimiento, control y consulta de información
+Fortalecer la gestión institucional mediante la consulta del calendario académico, la generación de reportes, el seguimiento de las actividades realizadas y la consolidación de las funcionalidades principales del sistema.
 
 ## Estructura general del proyecto
 
