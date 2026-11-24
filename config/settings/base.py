@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Aplicaciones del proyecto
     "apps.core",
+        "apps.permissions.apps.PermissionsConfig",
 ]
 
 MIDDLEWARE = [
