@@ -1,0 +1,436 @@
+
+{% extends 'layouts/dashboard_base.html' %}
+{% load static %}
+
+{% block title %}Panel Coordinador | SIDINO{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboards/coordinador.css' %}">
+{% endblock %}
+
+{% block avatar %}CO{% endblock %}
+{% block user_name %}Coordinador{% endblock %}
+{% block user_role %}Coordinación Académica{% endblock %}
+
+{% block topbar_avatar %}CO{% endblock %}
+{% block topbar_name %}Coordinador{% endblock %}
+{% block topbar_role %}Coordinación Académica{% endblock %}
+
+{% block breadcrumb %}Inicio / Panel de Coordinación{% endblock %}
+{% block page_title %}Panel de Coordinación{% endblock %}
+
+
+{% block navigation %}
+
+<a href="/dashboard/coordinador/" class="nav-link active">
+    <i class="fa-solid fa-house"></i>
+    <span>Inicio</span>
+</a>
+
+<span class="nav-section-title">GESTIÓN ACADÉMICA</span>
+
+<a href="/dashboard/coordinador/observaciones/" class="nav-link">
+    <i class="fa-solid fa-comment-dots"></i>
+    <span>Observaciones</span>
+</a>
+
+<a href="/dashboard/coordinador/citaciones/" class="nav-link">
+    <i class="fa-solid fa-calendar-check"></i>
+    <span>Citaciones</span>
+</a>
+
+<a href="/dashboard/coordinador/docentes/" class="nav-link">
+    <i class="fa-solid fa-chalkboard-user"></i>
+    <span>Docentes</span>
+</a>
+
+<span class="nav-section-title">INSTITUCIÓN</span>
+
+<a href="/dashboard/coordinador/reportes/" class="nav-link">
+    <i class="fa-solid fa-chart-pie"></i>
+    <span>Reportes</span>
+</a>
+
+<a href="/dashboard/coordinador/historial/" class="nav-link">
+    <i class="fa-solid fa-clock-rotate-left"></i>
+    <span>Historial</span>
+</a>
+{% endblock %}
+
+
+{% block sidebar_footer %}
+
+<a href="/dashboard/configuracion/" class="nav-link">
+    <i class="fa-solid fa-gear"></i>
+    <span>Configuración</span>
+</a>
+
+<a href="#" class="nav-link logout-link">
+    <i class="fas fa-sign-out-alt"></i>
+    <span>Cerrar sesión</span>
+</a>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="coordinator-dashboard">
+
+
+    <!-- BIENVENIDA -->
+    <section class="coordinator-welcome">
+
+        <div class="coordinator-welcome-text">
+
+            <span class="coordinator-welcome-label">
+                COORDINACIÓN ACADÉMICA
+            </span>
+
+            <h2>¡Bienvenido al área de coordinación!</h2>
+
+            <p>
+                Organiza el seguimiento académico, acompaña a docentes
+                y estudiantes, y gestiona las actividades de coordinación
+                desde un solo lugar.
+            </p>
+
+            <a href="#" class="coordinator-welcome-button">
+                <i class="fas fa-clipboard-list"></i>
+                Gestionar observaciones
+            </a>
+
+        </div>
+
+
+        <div class="coordinator-welcome-illustration">
+
+            <div class="coordinator-illustration-circle">
+                <i class="fas fa-school"></i>
+            </div>
+
+            <div class="coordinator-floating-icon coordinator-float-one">
+                <i class="fas fa-users"></i>
+            </div>
+
+            <div class="coordinator-floating-icon coordinator-float-two">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+
+            <div class="coordinator-floating-icon coordinator-float-three">
+                <i class="fas fa-clipboard-check"></i>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ESTADÍSTICAS -->
+    <section class="coordinator-stats-grid">
+
+
+        <article class="coordinator-stat-card">
+
+            <div class="coordinator-stat-icon observations-icon">
+                <i class="fas fa-clipboard-list"></i>
+            </div>
+
+            <div class="coordinator-stat-info">
+                <span>Observaciones registradas</span>
+                <h3>0</h3>
+                <small>Seguimiento estudiantil</small>
+            </div>
+
+        </article>
+
+
+        <article class="coordinator-stat-card">
+
+            <div class="coordinator-stat-icon citations-icon">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+
+            <div class="coordinator-stat-info">
+                <span>Citaciones pendientes</span>
+                <h3>0</h3>
+                <small>Procesos de seguimiento</small>
+            </div>
+
+        </article>
+
+
+        <article class="coordinator-stat-card">
+
+            <div class="coordinator-stat-icon teachers-icon">
+                <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+
+            <div class="coordinator-stat-info">
+                <span>Docentes registrados</span>
+                <h3>0</h3>
+                <small>Personal docente</small>
+            </div>
+
+        </article>
+
+
+        <article class="coordinator-stat-card">
+
+            <div class="coordinator-stat-icon courses-icon">
+                <i class="fas fa-book"></i>
+            </div>
+
+            <div class="coordinator-stat-info">
+                <span>Cursos asignados</span>
+                <h3>0</h3>
+                <small>Grupos académicos</small>
+            </div>
+
+        </article>
+
+
+    </section>
+
+
+    <!-- ACCESOS RÁPIDOS -->
+    <section class="coordinator-section">
+
+
+        <div class="coordinator-section-header">
+
+            <div>
+                <h3>Accesos rápidos</h3>
+                <p>Gestiona las principales actividades de coordinación.</p>
+            </div>
+
+        </div>
+
+
+        <div class="coordinator-quick-grid">
+
+
+            <a href="#" class="coordinator-quick-card">
+
+                <div class="coordinator-quick-icon quick-observations">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+
+                <div class="coordinator-quick-info">
+                    <h4>Observaciones</h4>
+                    <p>Registra y consulta seguimientos estudiantiles.</p>
+                </div>
+
+                <i class="fas fa-arrow-right coordinator-quick-arrow"></i>
+
+            </a>
+
+
+            <a href="#" class="coordinator-quick-card">
+
+                <div class="coordinator-quick-icon quick-citations">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+
+                <div class="coordinator-quick-info">
+                    <h4>Citaciones</h4>
+                    <p>Organiza reuniones con acudientes y estudiantes.</p>
+                </div>
+
+                <i class="fas fa-arrow-right coordinator-quick-arrow"></i>
+
+            </a>
+
+
+            <a href="#" class="coordinator-quick-card">
+
+                <div class="coordinator-quick-icon quick-teachers">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+
+                <div class="coordinator-quick-info">
+                    <h4>Docentes</h4>
+                    <p>Consulta y gestiona información docente.</p>
+                </div>
+
+                <i class="fas fa-arrow-right coordinator-quick-arrow"></i>
+
+            </a>
+
+
+            <a href="#" class="coordinator-quick-card">
+
+                <div class="coordinator-quick-icon quick-reports">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+
+                <div class="coordinator-quick-info">
+                    <h4>Reportes</h4>
+                    <p>Consulta información y seguimiento académico.</p>
+                </div>
+
+                <i class="fas fa-arrow-right coordinator-quick-arrow"></i>
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- SEGUIMIENTO ACADÉMICO -->
+    <section class="coordinator-section">
+
+
+        <div class="coordinator-section-header">
+
+            <div>
+                <h3>Seguimiento académico</h3>
+                <p>Resumen general de los procesos de coordinación.</p>
+            </div>
+
+        </div>
+
+
+        <div class="coordinator-followup-grid">
+
+
+            <article class="coordinator-followup-card">
+
+                <div class="coordinator-followup-icon followup-students">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+
+                <div>
+                    <h4>Seguimiento estudiantil</h4>
+
+                    <p>
+                        Gestiona observaciones, acompañamiento
+                        y situaciones académicas de los estudiantes.
+                    </p>
+                </div>
+
+                <a href="#" class="coordinator-primary-button">
+                    Consultar seguimiento
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+            </article>
+
+
+            <article class="coordinator-followup-card">
+
+                <div class="coordinator-followup-icon followup-parents">
+                    <i class="fas fa-users"></i>
+                </div>
+
+                <div>
+                    <h4>Comunicación con acudientes</h4>
+
+                    <p>
+                        Organiza citaciones y espacios de comunicación
+                        con las familias de los estudiantes.
+                    </p>
+                </div>
+
+                <a href="#" class="coordinator-primary-button">
+                    Gestionar citaciones
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- DOCENTES -->
+    <section class="coordinator-section">
+
+
+        <div class="coordinator-section-header">
+
+            <div>
+                <h3>Gestión docente</h3>
+                <p>Información general del equipo docente.</p>
+            </div>
+
+            <a href="#" class="coordinator-view-all">
+                Ver docentes
+                <i class="fas fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+        <div class="coordinator-teachers-card">
+
+            <div class="coordinator-teachers-empty-icon">
+                <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+
+            <div class="coordinator-teachers-empty-text">
+
+                <h4>Equipo docente</h4>
+
+                <p>
+                    Desde este espacio podrás consultar los docentes,
+                    revisar información de sus asignaciones y
+                    gestionar procesos relacionados con el área académica.
+                </p>
+
+            </div>
+
+            <a href="#" class="coordinator-primary-button">
+                <i class="fas fa-users"></i>
+                Consultar docentes
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ACTIVIDAD RECIENTE -->
+    <section class="coordinator-section">
+
+
+        <div class="coordinator-section-header">
+
+            <div>
+                <h3>Actividad reciente</h3>
+                <p>Movimientos realizados en coordinación académica.</p>
+            </div>
+
+            <a href="#" class="coordinator-view-all">
+                Ver historial
+                <i class="fas fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+        <div class="coordinator-activity-card">
+
+            <div class="coordinator-activity-empty-icon">
+                <i class="fas fa-history"></i>
+            </div>
+
+            <h4>Sin actividad reciente</h4>
+
+            <p>
+                Aquí aparecerán las observaciones, citaciones
+                y demás acciones realizadas por coordinación.
+            </p>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+{% endblock %}

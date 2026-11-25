@@ -1,0 +1,697 @@
+
+/* ==========================================
+   SIDINO - PANEL ACUDIENTE
+========================================== */
+
+.guardian-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* ==========================================
+   BIENVENIDA
+========================================== */
+
+.guardian-welcome {
+    background: linear-gradient(135deg, #17477f, #3980ce);
+    border-radius: 18px;
+    padding: 35px;
+    min-height: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    overflow: hidden;
+}
+
+.guardian-welcome-info {
+    max-width: 650px;
+}
+
+.guardian-welcome-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    opacity: 0.75;
+}
+
+.guardian-welcome-info h2 {
+    font-size: 28px;
+    margin: 12px 0;
+    font-weight: 700;
+}
+
+.guardian-welcome-info p {
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.9;
+    max-width: 540px;
+    margin-bottom: 22px;
+}
+
+.guardian-primary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: #2864a7;
+    padding: 12px 18px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.guardian-primary-button:hover {
+    background: #edf5ff;
+    transform: translateY(-2px);
+}
+
+.guardian-welcome-illustration {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.guardian-welcome-illustration i {
+    font-size: 95px;
+    color: rgba(255,255,255,0.85);
+}
+
+/* ==========================================
+   INFORMACIÓN DEL ESTUDIANTE
+========================================== */
+
+.guardian-student-card {
+    background: white;
+    border: 1px solid #edf0f5;
+    border-radius: 14px;
+    padding: 22px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.guardian-student-profile {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.guardian-student-avatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 15px;
+    background: #eaf2ff;
+    color: #3777d3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+}
+
+.guardian-student-info > span {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #8b96a6;
+    font-weight: 700;
+}
+
+.guardian-student-info h2 {
+    font-size: 17px;
+    color: #263448;
+    margin: 6px 0;
+}
+
+.guardian-student-info p {
+    font-size: 12px;
+    color: #8792a2;
+    margin: 0;
+}
+
+.guardian-student-details {
+    display: flex;
+    gap: 35px;
+    flex-wrap: wrap;
+}
+
+.guardian-student-details div {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.guardian-student-details span {
+    font-size: 10px;
+    color: #8b96a6;
+}
+
+.guardian-student-details strong {
+    font-size: 12px;
+    color: #334155;
+}
+
+.student-active-status {
+    color: #35a575 !important;
+}
+
+.student-active-status i {
+    font-size: 8px;
+    margin-right: 4px;
+}
+
+/* ==========================================
+   ESTADÍSTICAS
+========================================== */
+
+.guardian-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.guardian-stat-card {
+    background: white;
+    border: 1px solid #edf0f5;
+    border-radius: 14px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: 0.3s;
+}
+
+.guardian-stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
+
+.guardian-stat-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+}
+
+.guardian-stat-title {
+    font-size: 12px;
+    color: #7c8798;
+}
+
+.guardian-stat-card h3 {
+    font-size: 25px;
+    color: #263448;
+    margin: 5px 0;
+}
+
+.guardian-stat-card p {
+    font-size: 11px;
+    color: #929baa;
+    margin: 0;
+}
+
+/* ==========================================
+   COLORES
+========================================== */
+
+.blue {
+    background: #eaf2ff;
+    color: #3777d3;
+}
+
+.purple {
+    background: #f0eaff;
+    color: #8659ce;
+}
+
+.green {
+    background: #e6f8ef;
+    color: #36a675;
+}
+
+.orange {
+    background: #fff2e5;
+    color: #e79742;
+}
+
+.red {
+    background: #ffeaea;
+    color: #d66565;
+}
+
+/* ==========================================
+   SECCIONES
+========================================== */
+
+.guardian-section {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.guardian-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.guardian-section-header h2 {
+    font-size: 18px;
+    color: #263448;
+    margin: 0 0 6px;
+}
+
+.guardian-section-header p {
+    font-size: 12px;
+    color: #8b96a6;
+    margin: 0;
+}
+
+.guardian-see-more {
+    color: #3777d3;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ==========================================
+   ACCESOS RÁPIDOS
+========================================== */
+
+.guardian-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.guardian-quick-card {
+    background: white;
+    border: 1px solid #edf0f5;
+    border-radius: 14px;
+    padding: 22px;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}
+
+.guardian-quick-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    border-color: #d7e5fa;
+}
+
+.guardian-quick-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 17px;
+}
+
+.guardian-quick-card h3 {
+    font-size: 14px;
+    color: #263448;
+    margin: 0 0 8px;
+}
+
+.guardian-quick-card p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #8792a2;
+    margin: 0;
+    padding-right: 10px;
+}
+
+.guardian-quick-arrow {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: #aab4c2;
+    font-size: 12px;
+}
+
+/* ==========================================
+   RENDIMIENTO ACADÉMICO
+========================================== */
+
+.guardian-grades-card {
+    background: white;
+    border: 1px solid #edf0f5;
+    border-radius: 14px;
+    padding: 10px 24px;
+}
+
+.guardian-grade-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 55px;
+    gap: 22px;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #f0f2f6;
+}
+
+.guardian-grade-row:last-child {
+    border-bottom: none;
+}
+
+.guardian-subject {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.subject-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.guardian-subject h4 {
+    font-size: 12px;
+    color: #334155;
+    margin: 0 0 5px;
+}
+
+.guardian-subject p {
+    font-size: 10px;
+    color: #9aa5b4;
+    margin: 0;
+}
+
+.guardian-grade-progress {
+    width: 100%;
+}
+
+.guardian-grade-bar {
+    height: 8px;
+    background: #edf1f6;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.grade-fill {
+    height: 100%;
+    border-radius: 10px;
+}
+
+.blue-fill {
+    background: #4d89dc;
+}
+
+.purple-fill {
+    background: #956bdb;
+}
+
+.green-fill {
+    background: #44b586;
+}
+
+.orange-fill {
+    background: #e7a04d;
+}
+
+.red-fill {
+    background: #dc7474;
+}
+
+.guardian-grade {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.excellent {
+    background: #e6f8ef;
+    color: #35a575;
+}
+
+.good {
+    background: #eaf2ff;
+    color: #477fc9;
+}
+
+.average {
+    background: #fff3e2;
+    color: #d89135;
+}
+
+/* ==========================================
+   PANEL INFERIOR
+========================================== */
+
+.guardian-bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.guardian-panel {
+    background: white;
+    border: 1px solid #edf0f5;
+    border-radius: 14px;
+    padding: 23px;
+}
+
+.guardian-panel > .guardian-section-header {
+    margin-bottom: 20px;
+}
+
+/* ==========================================
+   CITACIONES
+========================================== */
+
+.guardian-appointment-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px;
+    border-radius: 12px;
+    background: #f8faff;
+    border: 1px solid #edf2fa;
+}
+
+.appointment-date {
+    width: 58px;
+    min-width: 58px;
+    height: 65px;
+    border-radius: 11px;
+    background: white;
+    border: 1px solid #e9eef6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.appointment-date span {
+    font-size: 10px;
+    font-weight: 700;
+    color: #4c83ce;
+}
+
+.appointment-date strong {
+    font-size: 23px;
+    color: #334155;
+}
+
+.appointment-info h4 {
+    font-size: 12px;
+    color: #334155;
+    margin: 0 0 10px;
+}
+
+.appointment-info p {
+    font-size: 10px;
+    color: #8792a2;
+    margin: 6px 0;
+}
+
+.appointment-info p i {
+    width: 15px;
+}
+
+.guardian-appointment-status {
+    margin: 14px 0;
+}
+
+.appointment-pending {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: #d89135;
+    background: #fff3e2;
+    padding: 7px 10px;
+    border-radius: 20px;
+}
+
+.guardian-panel-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    color: #3777d3;
+    padding-top: 14px;
+}
+
+/* ==========================================
+   OBSERVACIONES
+========================================== */
+
+.guardian-observation {
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f2f6;
+}
+
+.guardian-observation:last-of-type {
+    border-bottom: none;
+}
+
+.guardian-observation-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.observation-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.guardian-observation-header h4 {
+    font-size: 12px;
+    color: #334155;
+    margin: 0 0 5px;
+}
+
+.guardian-observation-header span {
+    font-size: 10px;
+    color: #9aa5b4;
+}
+
+.guardian-observation > p {
+    font-size: 11px;
+    color: #7d8999;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1200px) {
+
+    .guardian-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .guardian-quick-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .guardian-grade-row {
+        grid-template-columns: 180px 1fr 50px;
+        gap: 15px;
+    }
+
+    .guardian-student-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .guardian-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .guardian-welcome-illustration {
+        width: 140px;
+        height: 140px;
+    }
+
+    .guardian-welcome-illustration i {
+        font-size: 75px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .guardian-welcome {
+        padding: 25px;
+    }
+
+    .guardian-welcome-info h2 {
+        font-size: 22px;
+    }
+
+    .guardian-welcome-illustration {
+        display: none;
+    }
+
+    .guardian-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .guardian-quick-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .guardian-grade-row {
+        grid-template-columns: 1fr 55px;
+        gap: 12px;
+    }
+
+    .guardian-grade-progress {
+        grid-column: 1 / 2;
+        grid-row: 2;
+    }
+
+    .guardian-grade {
+        grid-column: 2;
+        grid-row: 1 / 3;
+    }
+
+    .guardian-panel {
+        padding: 17px;
+    }
+
+    .guardian-student-details {
+        gap: 20px;
+    }
+}

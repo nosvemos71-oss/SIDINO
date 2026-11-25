@@ -1,0 +1,451 @@
+
+/* ==========================================
+   SIDINO - DASHBOARD RECTOR
+========================================== */
+
+.rector-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+/* ==========================================
+   BIENVENIDA
+========================================== */
+
+.rector-dashboard .welcome-card {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.rector-dashboard .welcome-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    opacity: 0.85;
+}
+
+.rector-dashboard .welcome-text h2 {
+    font-size: 27px;
+    margin: 12px 0;
+}
+
+.rector-dashboard .welcome-text p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.rector-dashboard .welcome-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    flex-shrink: 0;
+}
+
+
+/* ==========================================
+   ESTADÍSTICAS
+========================================== */
+
+.rector-dashboard .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.rector-dashboard .stat-card {
+    background: #ffffff;
+    border: 1px solid #e9edf2;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rector-dashboard .stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.07);
+}
+
+.rector-dashboard .stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    flex-shrink: 0;
+}
+
+.rector-dashboard .stat-icon.students {
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+.rector-dashboard .stat-icon.teachers {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.rector-dashboard .stat-icon.courses {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.rector-dashboard .stat-icon.subjects {
+    background: #f5f3ff;
+    color: #7c3aed;
+}
+
+.rector-dashboard .stat-info {
+    min-width: 0;
+}
+
+.rector-dashboard .stat-info span {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.rector-dashboard .stat-info h3 {
+    font-size: 26px;
+    color: #1e293b;
+    margin: 5px 0;
+}
+
+.rector-dashboard .stat-info small {
+    color: #94a3b8;
+    font-size: 10px;
+}
+
+
+/* ==========================================
+   GRID PRINCIPAL
+========================================== */
+
+.rector-dashboard .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.rector-dashboard .dashboard-panel {
+    background: #ffffff;
+    border: 1px solid #e9edf2;
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.03);
+    min-width: 0;
+}
+
+
+/* ==========================================
+   ENCABEZADOS DE TARJETAS
+========================================== */
+
+.rector-dashboard .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.rector-dashboard .panel-subtitle {
+    font-size: 10px;
+    color: #f97316;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.rector-dashboard .panel-header h3 {
+    color: #1e293b;
+    font-size: 17px;
+    margin: 6px 0 0;
+}
+
+.rector-dashboard .panel-header-icon {
+    font-size: 20px;
+    color: #94a3b8;
+}
+
+
+/* ==========================================
+   CALENDARIO
+========================================== */
+
+.rector-dashboard .calendar-placeholder {
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 14px;
+}
+
+.rector-dashboard .calendar-placeholder-icon {
+    width: 58px;
+    height: 58px;
+    background: #fff7ed;
+    color: #f97316;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.rector-dashboard .calendar-placeholder h4 {
+    color: #334155;
+    font-size: 15px;
+    margin: 0 0 8px;
+}
+
+.rector-dashboard .calendar-placeholder p {
+    max-width: 280px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #94a3b8;
+    margin: 0;
+}
+
+
+/* ==========================================
+   ACCESOS RÁPIDOS
+========================================== */
+
+.rector-dashboard .quick-access-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.rector-dashboard .quick-access-item {
+    border: 1px solid #edf0f4;
+    border-radius: 14px;
+    padding: 18px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.rector-dashboard .quick-access-item:hover {
+    background: #f8fafc;
+    transform: translateY(-2px);
+}
+
+.rector-dashboard .quick-access-item span {
+    color: #475569;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.rector-dashboard .quick-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+}
+
+.rector-dashboard .quick-icon.users {
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+.rector-dashboard .quick-icon.subjects {
+    background: #f5f3ff;
+    color: #7c3aed;
+}
+
+.rector-dashboard .quick-icon.courses {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.rector-dashboard .quick-icon.assignments {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+
+/* ==========================================
+   ACTIVIDAD RECIENTE
+========================================== */
+
+.rector-dashboard .empty-activity {
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.rector-dashboard .empty-activity > i {
+    font-size: 34px;
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+.rector-dashboard .empty-activity h4 {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0 0 8px;
+}
+
+.rector-dashboard .empty-activity p {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #94a3b8;
+    max-width: 280px;
+}
+
+
+/* ==========================================
+   RESUMEN ACADÉMICO
+========================================== */
+
+.rector-dashboard .academic-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rector-dashboard .academic-summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 13px;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.rector-dashboard .academic-summary-item span {
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.rector-dashboard .academic-summary-item p {
+    color: #94a3b8;
+    font-size: 11px;
+    margin: 5px 0 0;
+}
+
+.rector-dashboard .academic-summary-item > i {
+    color: #f97316;
+    font-size: 17px;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1200px) {
+
+    .rector-dashboard .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .rector-dashboard .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .rector-dashboard {
+        gap: 16px;
+    }
+
+    .rector-dashboard .welcome-card {
+        padding: 22px;
+        border-radius: 16px;
+    }
+
+    .rector-dashboard .welcome-text h2 {
+        font-size: 21px;
+    }
+
+    .rector-dashboard .welcome-text p {
+        font-size: 12px;
+    }
+
+    .rector-dashboard .welcome-icon {
+        width: 65px;
+        height: 65px;
+        font-size: 30px;
+        border-radius: 18px;
+    }
+
+    .rector-dashboard .stats-grid {
+        gap: 10px;
+    }
+
+    .rector-dashboard .stat-card {
+        padding: 14px;
+        gap: 10px;
+    }
+
+    .rector-dashboard .stat-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 15px;
+    }
+
+    .rector-dashboard .stat-info h3 {
+        font-size: 21px;
+    }
+
+    .rector-dashboard .stat-info span {
+        font-size: 11px;
+    }
+
+    .rector-dashboard .stat-info small {
+        font-size: 9px;
+    }
+
+    .rector-dashboard .dashboard-panel {
+        padding: 17px;
+    }
+
+}

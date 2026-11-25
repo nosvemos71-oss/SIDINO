@@ -1,0 +1,618 @@
+
+/* ==========================================
+   SIDINO - PANEL DOCENTE
+========================================== */
+
+.teacher-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* ==========================================
+   BIENVENIDA
+========================================== */
+
+.teacher-welcome {
+    background: linear-gradient(135deg, #173b70, #2865ad);
+    border-radius: 18px;
+    padding: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    overflow: hidden;
+    position: relative;
+    min-height: 210px;
+}
+
+.welcome-info {
+    max-width: 650px;
+    position: relative;
+    z-index: 2;
+}
+
+.welcome-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    opacity: 0.75;
+}
+
+.welcome-info h2 {
+    font-size: 28px;
+    margin: 12px 0;
+    font-weight: 700;
+}
+
+.welcome-info p {
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.9;
+    margin-bottom: 22px;
+    max-width: 540px;
+}
+
+.teacher-primary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: #1f5595;
+    padding: 12px 18px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.teacher-primary-button:hover {
+    transform: translateY(-2px);
+    background: #f0f5ff;
+}
+
+.welcome-illustration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 190px;
+    height: 190px;
+    background: rgba(255,255,255,0.10);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-right: 20px;
+}
+
+.welcome-illustration i {
+    font-size: 100px;
+    color: rgba(255,255,255,0.85);
+}
+
+/* ==========================================
+   ESTADÍSTICAS
+========================================== */
+
+.teacher-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.teacher-stat-card {
+    background: #ffffff;
+    border: 1px solid #edf0f5;
+    border-radius: 14px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: 0.3s;
+}
+
+.teacher-stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+}
+
+.stat-title {
+    font-size: 12px;
+    color: #7c8798;
+}
+
+.teacher-stat-card h3 {
+    font-size: 25px;
+    color: #263448;
+    margin: 5px 0;
+}
+
+.teacher-stat-card p {
+    font-size: 11px;
+    color: #929baa;
+    margin: 0;
+}
+
+/* ==========================================
+   COLORES
+========================================== */
+
+.blue {
+    background: #eaf2ff;
+    color: #3777d3;
+}
+
+.purple {
+    background: #f0eaff;
+    color: #8659ce;
+}
+
+.orange {
+    background: #fff2e5;
+    color: #e79742;
+}
+
+.green {
+    background: #e6f8ef;
+    color: #36a675;
+}
+
+/* ==========================================
+   SECCIONES
+========================================== */
+
+.teacher-section {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.teacher-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.teacher-section-header h2 {
+    font-size: 18px;
+    color: #263448;
+    margin: 0 0 6px;
+}
+
+.teacher-section-header p {
+    font-size: 12px;
+    color: #8b96a6;
+    margin: 0;
+}
+
+.teacher-see-more {
+    color: #3777d3;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ==========================================
+   ACCESOS RÁPIDOS
+========================================== */
+
+.teacher-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.teacher-quick-card {
+    background: white;
+    border: 1px solid #edf0f5;
+    border-radius: 14px;
+    padding: 22px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    transition: 0.3s;
+}
+
+.teacher-quick-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    border-color: #d7e5fa;
+}
+
+.quick-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 17px;
+}
+
+.teacher-quick-card h3 {
+    font-size: 14px;
+    color: #263448;
+    margin: 0 0 8px;
+}
+
+.teacher-quick-card p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #8792a2;
+    margin: 0;
+    padding-right: 10px;
+}
+
+.quick-arrow {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: #aab4c2;
+    font-size: 12px;
+}
+
+/* ==========================================
+   CLASES
+========================================== */
+
+.teacher-classes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.teacher-class-card {
+    background: white;
+    border: 1px solid #edf0f5;
+    border-radius: 14px;
+    padding: 22px;
+    transition: 0.3s;
+}
+
+.teacher-class-card:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+    transform: translateY(-2px);
+}
+
+.class-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #a0aaba;
+    margin-bottom: 18px;
+}
+
+.class-card-top i {
+    cursor: pointer;
+}
+
+.class-tag {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.blue-tag {
+    background: #eaf2ff;
+    color: #3777d3;
+}
+
+.purple-tag {
+    background: #f0eaff;
+    color: #8659ce;
+}
+
+.green-tag {
+    background: #e6f8ef;
+    color: #36a675;
+}
+
+.teacher-class-card h3 {
+    font-size: 17px;
+    color: #263448;
+    margin: 0 0 5px;
+}
+
+.class-description {
+    font-size: 12px;
+    color: #8792a2;
+    margin: 0 0 20px;
+}
+
+.class-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.class-card-info span {
+    font-size: 11px;
+    color: #778496;
+}
+
+.class-card-info i {
+    width: 18px;
+    color: #9aa6b6;
+}
+
+.class-progress {
+    margin-bottom: 20px;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin-bottom: 8px;
+    color: #7d8999;
+}
+
+.progress-header strong {
+    color: #435166;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 7px;
+    background: #edf1f6;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 10px;
+}
+
+.blue-fill {
+    background: #4d89dc;
+}
+
+.purple-fill {
+    background: #956bdb;
+}
+
+.green-fill {
+    background: #44b586;
+}
+
+.class-button {
+    display: block;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px;
+    border-radius: 8px;
+    background: #f4f7fb;
+    color: #4777b7;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.class-button:hover {
+    background: #eaf2ff;
+}
+
+/* ==========================================
+   PANEL INFERIOR
+========================================== */
+
+.teacher-bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.teacher-panel {
+    background: white;
+    border: 1px solid #edf0f5;
+    border-radius: 14px;
+    padding: 23px;
+}
+
+.teacher-panel > .teacher-section-header {
+    margin-bottom: 20px;
+}
+
+/* ==========================================
+   SEGUIMIENTO
+========================================== */
+
+.tracking-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f2f6;
+}
+
+.tracking-item:last-child {
+    border-bottom: none;
+}
+
+.tracking-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tracking-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.tracking-info h4 {
+    font-size: 12px;
+    color: #334155;
+    margin: 0 0 5px;
+}
+
+.tracking-info p {
+    font-size: 11px;
+    color: #8b96a6;
+    margin: 0;
+}
+
+.tracking-status {
+    font-size: 10px;
+    padding: 6px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.pending {
+    background: #fff3e2;
+    color: #d89135;
+}
+
+.progress-status {
+    background: #eaf2ff;
+    color: #4a82ce;
+}
+
+.completed {
+    background: #e6f8ef;
+    color: #35a575;
+}
+
+/* ==========================================
+   ACTIVIDAD RECIENTE
+========================================== */
+
+.teacher-activity-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.teacher-activity-item {
+    display: flex;
+    gap: 12px;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f2f6;
+}
+
+.teacher-activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.teacher-activity-item h4 {
+    font-size: 12px;
+    color: #334155;
+    margin: 0 0 5px;
+}
+
+.teacher-activity-item p {
+    font-size: 11px;
+    color: #8792a2;
+    margin: 0 0 5px;
+}
+
+.teacher-activity-item span {
+    font-size: 10px;
+    color: #a3adba;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1200px) {
+
+    .teacher-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .teacher-quick-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .teacher-classes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+
+    .teacher-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-illustration {
+        width: 140px;
+        height: 140px;
+        margin-right: 0;
+    }
+
+    .welcome-illustration i {
+        font-size: 75px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .teacher-welcome {
+        padding: 25px;
+    }
+
+    .welcome-info h2 {
+        font-size: 22px;
+    }
+
+    .welcome-illustration {
+        display: none;
+    }
+
+    .teacher-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-quick-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-classes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-stat-card {
+        padding: 18px;
+    }
+
+    .teacher-panel {
+        padding: 17px;
+    }
+
+    .tracking-status {
+        font-size: 9px;
+    }
+}

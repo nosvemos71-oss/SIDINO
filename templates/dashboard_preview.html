@@ -1,0 +1,366 @@
+
+{% extends "layouts/dashboard_base.html" %}
+{% load static %}
+
+{% block title %}Panel Rector | SIDINO{% endblock %}
+
+{% block user_name %}Rector{% endblock %}
+{% block user_role %}Dirección institucional{% endblock %}
+{% block avatar %}R{% endblock %}
+
+{% block topbar_name %}Rector{% endblock %}
+{% block topbar_role %}Dirección institucional{% endblock %}
+{% block topbar_avatar %}R{% endblock %}
+
+{% block breadcrumb %}Rector / Inicio{% endblock %}
+{% block page_title %}Panel de control{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboards/rector.css' %}">
+{% endblock %}
+
+{% block navigation %}
+
+<a href="/dashboard/rector/" class="nav-link active">
+    <i class="fa-solid fa-house"></i>
+    <span>Inicio</span>
+</a>
+
+<span class="nav-section-title">GESTIÓN INSTITUCIONAL</span>
+
+<a href="/dashboard/rector/usuarios/" class="nav-link">
+    <i class="fa-solid fa-users"></i>
+    <span>Gestión de usuarios</span>
+</a>
+
+<a href="/dashboard/rector/usuarios/" class="nav-link">
+    <i class="fa-solid fa-user-plus"></i>
+    <span>Crear usuarios</span>
+</a>
+
+<span class="nav-section-title">GESTIÓN ACADÉMICA</span>
+
+<a href="/dashboard/rector/materias/" class="nav-link">
+    <i class="fa-solid fa-book"></i>
+    <span>Materias</span>
+</a>
+
+<a href="/dashboard/rector/cursos/" class="nav-link">
+    <i class="fa-solid fa-school"></i>
+    <span>Cursos</span>
+</a>
+
+<a href="/dashboard/rector/salones/" class="nav-link">
+    <i class="fa-solid fa-door-open"></i>
+    <span>Salones</span>
+</a>
+
+<a href="/dashboard/rector/horarios/" class="nav-link">
+    <i class="fa-solid fa-clock"></i>
+    <span>Horarios</span>
+</a>
+
+<a href="/dashboard/rector/periodos/" class="nav-link">
+    <i class="fa-solid fa-calendar-days"></i>
+    <span>Periodos</span>
+</a>
+
+<a href="/dashboard/rector/asignaciones/" class="nav-link">
+    <i class="fa-solid fa-chalkboard-user"></i>
+    <span>Asignaciones</span>
+</a>
+
+<a href="/dashboard/rector/matriculas/" class="nav-link">
+    <i class="fa-solid fa-clipboard-check"></i>
+    <span>Matrículas</span>
+</a>
+
+<a href="/dashboard/rector/acudientes/" class="nav-link">
+    <i class="fa-solid fa-user-group"></i>
+    <span>Acudientes</span>
+</a>
+
+<span class="nav-section-title">INSTITUCIÓN</span>
+
+<a href="/dashboard/rector/historial/" class="nav-link">
+    <i class="fa-solid fa-clock-rotate-left"></i>
+    <span>Historial</span>
+</a>
+
+<a href="/dashboard/rector/reportes/" class="nav-link">
+    <i class="fa-solid fa-chart-pie"></i>
+    <span>Reportes</span>
+</a>
+
+
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="rector-dashboard">
+
+    <!-- BIENVENIDA -->
+    <div class="welcome-card">
+
+        <div class="welcome-text">
+            <span class="welcome-label">SIDINO · GESTIÓN EDUCATIVA</span>
+
+            <h2>Bienvenido al panel institucional</h2>
+
+            <p>
+                Administra los procesos académicos y consulta
+                el estado general de tu institución.
+            </p>
+        </div>
+
+        <div class="welcome-icon">
+            <i class="fa-solid fa-school"></i>
+        </div>
+
+    </div>
+
+
+    <!-- ESTADÍSTICAS -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <div class="stat-icon students">
+                <i class="fa-solid fa-user-graduate"></i>
+            </div>
+
+            <div class="stat-info">
+                <span>Total estudiantes</span>
+                <h3>--</h3>
+                <small>Estudiantes matriculados</small>
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-icon teachers">
+                <i class="fa-solid fa-chalkboard-user"></i>
+            </div>
+
+            <div class="stat-info">
+                <span>Total docentes</span>
+                <h3>--</h3>
+                <small>Docentes registrados</small>
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-icon courses">
+                <i class="fa-solid fa-book-open"></i>
+            </div>
+
+            <div class="stat-info">
+                <span>Total cursos</span>
+                <h3>--</h3>
+                <small>Cursos institucionales</small>
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-icon subjects">
+                <i class="fa-solid fa-book"></i>
+            </div>
+
+            <div class="stat-info">
+                <span>Total materias</span>
+                <h3>--</h3>
+                <small>Materias registradas</small>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- CUERPO DEL DASHBOARD -->
+    <div class="dashboard-grid">
+
+
+        <!-- CALENDARIO -->
+        <div class="dashboard-panel calendar-panel">
+
+            <div class="panel-header">
+                <div>
+                    <span class="panel-subtitle">ORGANIZACIÓN</span>
+                    <h3>Calendario institucional</h3>
+                </div>
+
+                <i class="fa-solid fa-calendar-days panel-header-icon"></i>
+            </div>
+
+            <div class="calendar-placeholder">
+
+                <div class="calendar-placeholder-icon">
+                    <i class="fa-regular fa-calendar"></i>
+                </div>
+
+                <h4>Calendario de actividades</h4>
+
+                <p>
+                    Aquí aparecerán los eventos, reuniones,
+                    actividades académicas y fechas importantes.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACCESOS RÁPIDOS -->
+        <div class="dashboard-panel quick-panel">
+
+            <div class="panel-header">
+                <div>
+                    <span class="panel-subtitle">ATAJOS</span>
+                    <h3>Accesos rápidos</h3>
+                </div>
+
+                <i class="fa-solid fa-bolt panel-header-icon"></i>
+            </div>
+
+
+            <div class="quick-access-grid">
+
+                <div class="quick-access-item">
+                    <div class="quick-icon users">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+
+                    <span>Crear usuario</span>
+                </div>
+
+
+                <div class="quick-access-item">
+                    <div class="quick-icon subjects">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+
+                    <span>Agregar materia</span>
+                </div>
+
+
+                <div class="quick-access-item">
+                    <div class="quick-icon courses">
+                        <i class="fa-solid fa-school"></i>
+                    </div>
+
+                    <span>Crear curso</span>
+                </div>
+
+
+                <div class="quick-access-item">
+                    <div class="quick-icon assignments">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+
+                    <span>Asignar docente</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACTIVIDAD RECIENTE -->
+        <div class="dashboard-panel activity-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <span class="panel-subtitle">MOVIMIENTOS</span>
+                    <h3>Actividad reciente</h3>
+                </div>
+
+                <i class="fa-solid fa-clock-rotate-left panel-header-icon"></i>
+
+            </div>
+
+
+            <div class="empty-activity">
+
+                <i class="fa-solid fa-inbox"></i>
+
+                <h4>Sin actividad registrada</h4>
+
+                <p>
+                    Aquí aparecerán los movimientos realizados
+                    recientemente en SIDINO.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESUMEN ACADÉMICO -->
+        <div class="dashboard-panel academic-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <span class="panel-subtitle">INFORMACIÓN</span>
+                    <h3>Resumen académico</h3>
+                </div>
+
+                <i class="fa-solid fa-chart-column panel-header-icon"></i>
+
+            </div>
+
+
+            <div class="academic-summary">
+
+                <div class="academic-summary-item">
+                    <div>
+                        <span>Materias</span>
+                        <p>Organización de asignaturas</p>
+                    </div>
+
+                    <i class="fa-solid fa-book"></i>
+                </div>
+
+
+                <div class="academic-summary-item">
+                    <div>
+                        <span>Asignaciones</span>
+                        <p>Docentes y clases</p>
+                    </div>
+
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+
+                <div class="academic-summary-item">
+                    <div>
+                        <span>Matrículas</span>
+                        <p>Estudiantes matriculados</p>
+                    </div>
+
+                    <i class="fa-solid fa-clipboard-check"></i>
+                </div>
+
+
+                <div class="academic-summary-item">
+                    <div>
+                        <span>Periodos</span>
+                        <p>Organización académica</p>
+                    </div>
+
+                    <i class="fa-solid fa-calendar"></i>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,153 @@
+
+{% extends "layouts/dashboard_base.html" %}
+{% load static %}
+
+{% block title %}Configuración | SIDINO{% endblock %}
+{% block breadcrumb %}Configuración{% endblock %}
+{% block page_title %}Configuración del sistema{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboards/configuracion.css' %}">
+{% endblock %}
+
+{% block navigation %}
+<a href="/dashboard/rector/" class="nav-link">
+    <i class="fa-solid fa-house"></i><span>Rector</span>
+</a>
+<a href="/dashboard/administrativo/" class="nav-link">
+    <i class="fa-solid fa-user-gear"></i><span>Administrativo</span>
+</a>
+<a href="/dashboard/coordinador/" class="nav-link">
+    <i class="fa-solid fa-users-gear"></i><span>Coordinador</span>
+</a>
+<a href="/dashboard/docente/" class="nav-link">
+    <i class="fa-solid fa-chalkboard-user"></i><span>Docente</span>
+</a>
+<a href="/dashboard/estudiante/" class="nav-link">
+    <i class="fa-solid fa-user-graduate"></i><span>Estudiante</span>
+</a>
+<a href="/dashboard/acudiente/" class="nav-link">
+    <i class="fa-solid fa-users"></i><span>Acudiente</span>
+</a>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="settings-container">
+
+    <div class="settings-intro">
+        <div>
+            <span class="settings-label">PERSONALIZACIÓN</span>
+            <h2>Configura SIDINO a tu gusto</h2>
+            <p>Personaliza la apariencia de tu plataforma y ajusta tus preferencias.</p>
+        </div>
+        <i class="fa-solid fa-sliders"></i>
+    </div>
+
+    <!-- COLORES -->
+    <section class="settings-card">
+        <div class="settings-card-title">
+            <div class="settings-icon">
+                <i class="fa-solid fa-palette"></i>
+            </div>
+            <div>
+                <h3>Color de la interfaz</h3>
+                <p>Selecciona el color principal de tu panel.</p>
+            </div>
+        </div>
+
+        <div class="color-options">
+            <button class="color-option" data-color="#2563eb" style="--option-color:#2563eb" aria-label="Azul"></button>
+            <button class="color-option" data-color="#7c3aed" style="--option-color:#7c3aed" aria-label="Morado"></button>
+            <button class="color-option" data-color="#059669" style="--option-color:#059669" aria-label="Verde"></button>
+            <button class="color-option" data-color="#db2777" style="--option-color:#db2777" aria-label="Rosado"></button>
+            <button class="color-option" data-color="#ea580c" style="--option-color:#ea580c" aria-label="Naranja"></button>
+            <button class="color-option" data-color="#0891b2" style="--option-color:#0891b2" aria-label="Turquesa"></button>
+        </div>
+    </section>
+
+    <!-- TEMA -->
+    <section class="settings-card">
+        <div class="settings-card-title">
+            <div class="settings-icon">
+                <i class="fa-solid fa-moon"></i>
+            </div>
+            <div>
+                <h3>Modo de visualización</h3>
+                <p>Selecciona cómo deseas visualizar SIDINO.</p>
+            </div>
+        </div>
+
+        <div class="settings-theme-options">
+            <button class="theme-option" data-theme="light">
+                <i class="fa-solid fa-sun"></i>
+                <span>Modo claro</span>
+            </button>
+
+            <button class="theme-option" data-theme="dark">
+                <i class="fa-solid fa-moon"></i>
+                <span>Modo oscuro</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- DENSIDAD -->
+    <section class="settings-card">
+        <div class="settings-card-title">
+            <div class="settings-icon">
+                <i class="fa-solid fa-expand"></i>
+            </div>
+            <div>
+                <h3>Visualización</h3>
+                <p>Ajusta el espacio de los elementos de la interfaz.</p>
+            </div>
+        </div>
+
+        <div class="settings-density-options">
+            <button class="density-option" data-density="normal">
+                Normal
+            </button>
+
+            <button class="density-option" data-density="compact">
+                Compacta
+            </button>
+        </div>
+    </section>
+
+    <!-- NOTIFICACIONES -->
+    <section class="settings-card">
+        <div class="settings-card-title">
+            <div class="settings-icon">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <div>
+                <h3>Notificaciones</h3>
+                <p>Activa o desactiva las notificaciones visuales.</p>
+            </div>
+        </div>
+
+        <label class="settings-switch">
+            <span>Mostrar notificaciones</span>
+            <input type="checkbox" id="notificationsToggle">
+            <span class="switch-slider"></span>
+        </label>
+    </section>
+
+    <!-- RESTABLECER -->
+    <div class="settings-actions">
+        <button id="resetSettings" class="settings-reset">
+            <i class="fa-solid fa-rotate-left"></i>
+            Restablecer configuración
+        </button>
+    </div>
+
+    <div id="settingsMessage" class="settings-message"></div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/dashboards/configuracion.js' %}"></script>
+{% endblock %}

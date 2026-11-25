@@ -1,0 +1,438 @@
+
+{% extends 'layouts/dashboard_base.html' %}
+{% load static %}
+
+{% block title %}Panel Docente | SIDINO{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboards/docente.css' %}">
+{% endblock %}
+
+{% block avatar %}DO{% endblock %}
+{% block user_name %}Docente{% endblock %}
+{% block user_role %}Área de enseñanza{% endblock %}
+
+{% block topbar_avatar %}DO{% endblock %}
+{% block topbar_name %}Docente{% endblock %}
+{% block topbar_role %}Área de enseñanza{% endblock %}
+
+{% block breadcrumb %}Inicio / Panel Docente{% endblock %}
+{% block page_title %}Panel Docente{% endblock %}
+
+{% block navigation %}
+<a href="/dashboard/docente/" class="nav-link">
+    <i class="fa-solid fa-house"></i><span>Inicio</span>
+</a>
+<a href="/dashboard/docente/clases/" class="nav-link">
+    <i class="fa-solid fa-chalkboard"></i><span>Mis clases</span>
+</a>
+<a href="/dashboard/docente/notas/" class="nav-link">
+    <i class="fa-solid fa-clipboard-list"></i><span>Notas</span>
+</a>
+<a href="/dashboard/docente/observaciones/" class="nav-link">
+    <i class="fa-solid fa-comment-dots"></i><span>Observaciones</span>
+</a>
+<a href="/dashboard/docente/contenido/" class="nav-link">
+    <i class="fa-solid fa-book-open"></i><span>Contenido</span>
+</a>
+<a href="/dashboard/docente/historial/" class="nav-link">
+    <i class="fa-solid fa-clock-rotate-left"></i><span>Historial</span>
+</a>
+{% endblock %}
+
+{% block sidebar_footer %}
+<a href="/dashboard/configuracion/" class="nav-link">
+    <i class="fa-solid fa-gear"></i>
+    <span>Configuración</span>
+</a>
+
+<a href="#" class="nav-link logout-link">
+    <i class="fas fa-sign-out-alt"></i>
+    <span>Cerrar sesión</span>
+</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="teacher-dashboard">
+
+    <!-- Bienvenida -->
+    <section class="teacher-welcome">
+
+        <div class="welcome-info">
+            <span class="welcome-label">PANEL ACADÉMICO</span>
+
+            <h2>¡Bienvenido al espacio docente!</h2>
+
+            <p>
+                Gestiona tus clases, registra calificaciones,
+                realiza seguimiento a tus estudiantes y organiza
+                tu actividad académica desde un solo lugar.
+            </p>
+
+            <a href="#" class="teacher-primary-button">
+                <i class="fas fa-book-open"></i>
+                Ver mis clases
+            </a>
+        </div>
+
+        <div class="welcome-illustration">
+            <i class="fas fa-chalkboard-teacher"></i>
+        </div>
+
+    </section>
+
+    <!-- Estadísticas -->
+    <section class="teacher-stats">
+
+        <div class="teacher-stat-card">
+            <div class="stat-icon blue">
+                <i class="fas fa-book"></i>
+            </div>
+
+            <div>
+                <span class="stat-title">Mis clases</span>
+                <h3>6</h3>
+                <p>Clases asignadas</p>
+            </div>
+        </div>
+
+        <div class="teacher-stat-card">
+            <div class="stat-icon purple">
+                <i class="fas fa-users"></i>
+            </div>
+
+            <div>
+                <span class="stat-title">Estudiantes</span>
+                <h3>148</h3>
+                <p>Estudiantes a cargo</p>
+            </div>
+        </div>
+
+        <div class="teacher-stat-card">
+            <div class="stat-icon orange">
+                <i class="fas fa-edit"></i>
+            </div>
+
+            <div>
+                <span class="stat-title">Notas pendientes</span>
+                <h3>12</h3>
+                <p>Por registrar</p>
+            </div>
+        </div>
+
+        <div class="teacher-stat-card">
+            <div class="stat-icon green">
+                <i class="fas fa-comment-dots"></i>
+            </div>
+
+            <div>
+                <span class="stat-title">Observaciones</span>
+                <h3>8</h3>
+                <p>Registradas este mes</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Accesos rápidos -->
+    <section class="teacher-section">
+
+        <div class="teacher-section-header">
+            <div>
+                <h2>Accesos rápidos</h2>
+                <p>Accede rápidamente a tus herramientas de trabajo.</p>
+            </div>
+        </div>
+
+        <div class="teacher-quick-grid">
+
+            <a href="#" class="teacher-quick-card">
+                <div class="quick-icon blue">
+                    <i class="fas fa-book-open"></i>
+                </div>
+
+                <h3>Mis clases</h3>
+                <p>Consulta tus cursos y grupos asignados.</p>
+
+                <i class="fas fa-arrow-right quick-arrow"></i>
+            </a>
+
+            <a href="#" class="teacher-quick-card">
+                <div class="quick-icon purple">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+
+                <h3>Calificaciones</h3>
+                <p>Registra y consulta las notas de tus estudiantes.</p>
+
+                <i class="fas fa-arrow-right quick-arrow"></i>
+            </a>
+
+            <a href="#" class="teacher-quick-card">
+                <div class="quick-icon orange">
+                    <i class="fas fa-comment-alt"></i>
+                </div>
+
+                <h3>Observaciones</h3>
+                <p>Realiza seguimiento académico y convivencial.</p>
+
+                <i class="fas fa-arrow-right quick-arrow"></i>
+            </a>
+
+            <a href="#" class="teacher-quick-card">
+                <div class="quick-icon green">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+
+        <h3>Contenido académico</h3>
+                <p>Organiza materiales y recursos de tus clases.</p>
+
+                <i class="fas fa-arrow-right quick-arrow"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Clases -->
+    <section class="teacher-section">
+
+        <div class="teacher-section-header">
+            <div>
+                <h2>Mis clases asignadas</h2>
+                <p>Resumen de tus grupos académicos.</p>
+            </div>
+
+            <a href="#" class="teacher-see-more">
+                Ver todas <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="teacher-classes-grid">
+
+            <article class="teacher-class-card">
+
+                <div class="class-card-top">
+                    <span class="class-tag blue-tag">Matemáticas</span>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+
+                <h3>Grado 10° A</h3>
+                <p class="class-description">Matemáticas</p>
+
+                <div class="class-card-info">
+                    <span>
+                        <i class="fas fa-users"></i>
+                        28 estudiantes
+                    </span>
+
+                    <span>
+                        <i class="fas fa-clock"></i>
+                        5 horas semanales
+                    </span>
+                </div>
+
+                <div class="class-progress">
+                    <div class="progress-header">
+                        <span>Progreso académico</span>
+                        <strong>75%</strong>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill blue-fill" style="width:75%"></div>
+                    </div>
+                </div>
+
+                <a href="#" class="class-button">Ver grupo</a>
+
+            </article>
+
+            <article class="teacher-class-card">
+
+                <div class="class-card-top">
+                    <span class="class-tag purple-tag">Matemáticas</span>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+
+                <h3>Grado 10° B</h3>
+                <p class="class-description">Matemáticas</p>
+
+                <div class="class-card-info">
+                    <span>
+                        <i class="fas fa-users"></i>
+                        30 estudiantes
+                    </span>
+
+                    <span>
+                        <i class="fas fa-clock"></i>
+                        4 horas semanales
+                    </span>
+                </div>
+
+                <div class="class-progress">
+                    <div class="progress-header">
+                        <span>Progreso académico</span>
+                        <strong>60%</strong>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill purple-fill" style="width:60%"></div>
+                    </div>
+                </div>
+
+                <a href="#" class="class-button">Ver grupo</a>
+
+            </article>
+
+            <article class="teacher-class-card">
+
+                <div class="class-card-top">
+                    <span class="class-tag green-tag">Matemáticas</span>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+
+                <h3>Grado 11° A</h3>
+                <p class="class-description">Matemáticas</p>
+
+                <div class="class-card-info">
+                    <span>
+                        <i class="fas fa-users"></i>
+                        26 estudiantes
+                    </span>
+
+                    <span>
+                        <i class="fas fa-clock"></i>
+                        5 horas semanales
+                    </span>
+                </div>
+
+                <div class="class-progress">
+                    <div class="progress-header">
+                        <span>Progreso académico</span>
+                        <strong>90%</strong>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill green-fill" style="width:90%"></div>
+                    </div>
+                </div>
+
+                <a href="#" class="class-button">Ver grupo</a>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- Seguimiento -->
+    <section class="teacher-bottom-grid">
+
+        <div class="teacher-panel">
+
+            <div class="teacher-section-header">
+                <div>
+                    <h2>Seguimiento académico</h2>
+                    <p>Estado de tus actividades pendientes.</p>
+                </div>
+            </div>
+
+            <div class="tracking-item">
+                <div class="tracking-icon orange">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+
+                <div class="tracking-info">
+                    <h4>Registro de calificaciones</h4>
+                    <p>12 calificaciones pendientes</p>
+                </div>
+
+                <span class="tracking-status pending">Pendiente</span>
+            </div>
+
+            <div class="tracking-item">
+                <div class="tracking-icon blue">
+                    <i class="fas fa-file-upload"></i>
+                </div>
+
+                <div class="tracking-info">
+                    <h4>Contenido de clase</h4>
+                    <p>3 recursos por actualizar</p>
+                </div>
+
+                <span class="tracking-status progress-status">En proceso</span>
+            </div>
+
+            <div class="tracking-item">
+                <div class="tracking-icon green">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+
+                <div class="tracking-info">
+                    <h4>Observaciones</h4>
+                    <p>Seguimiento registrado</p>
+                </div>
+
+                <span class="tracking-status completed">Completado</span>
+            </div>
+
+        </div>
+
+        <!-- Actividad reciente -->
+        <div class="teacher-panel">
+
+            <div class="teacher-section-header">
+                <div>
+                    <h2>Actividad reciente</h2>
+                    <p>Últimos movimientos en tu panel.</p>
+                </div>
+            </div>
+
+            <div class="teacher-activity-list">
+
+                <div class="teacher-activity-item">
+                    <div class="activity-icon blue">
+                        <i class="fas fa-edit"></i>
+                    </div>
+
+                    <div>
+                        <h4>Calificación actualizada</h4>
+                        <p>Grado 10° A</p>
+                        <span>Hoy · 10:30 a. m.</span>
+                    </div>
+                </div>
+
+                <div class="teacher-activity-item">
+                    <div class="activity-icon purple">
+                        <i class="fas fa-comment"></i>
+                    </div>
+
+                    <div>
+                        <h4>Observación registrada</h4>
+                        <p>Seguimiento estudiantil</p>
+                        <span>Hoy · 9:15 a. m.</span>
+                    </div>
+                </div>
+
+                <div class="teacher-activity-item">
+                    <div class="activity-icon green">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+
+                    <div>
+                        <h4>Contenido actualizado</h4>
+                        <p>Matemáticas · Grado 11°</p>
+                        <span>Ayer · 3:40 p. m.</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

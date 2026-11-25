@@ -1,0 +1,213 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}SIDINO{% endblock %}</title>
+
+    <!-- CSS principal -->
+    <link rel="stylesheet"
+          href="{% static 'css/dashboard.css' %}">
+
+    <!-- Iconos -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- =================================
+             MENÚ LATERAL
+        ================================== -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <!-- LOGO -->
+            <div class="sidebar-brand">
+
+                <div class="brand-logo">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+
+                <div class="brand-info">
+                    <h2>SIDINO</h2>
+                    <span>Gestión Educativa</span>
+                </div>
+
+            </div>
+
+
+            <!-- PERFIL -->
+            <div class="sidebar-user">
+
+                <div class="user-avatar">
+                    {% block avatar %}U{% endblock %}
+                </div>
+
+                <div class="user-info">
+
+                    <h3>
+                        {% block user_name %}Usuario SIDINO{% endblock %}
+                    </h3>
+
+                    <span>
+                        {% block user_role %}Usuario{% endblock %}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- NAVEGACIÓN -->
+            <nav class="sidebar-nav">
+
+                <span class="nav-section-title">
+                    MENÚ PRINCIPAL
+                </span>
+
+                {% block navigation %}
+
+                <!--
+                    Cada rol insertará aquí sus opciones
+                -->
+
+                {% endblock %}
+
+            </nav>
+
+
+            <!-- PARTE INFERIOR -->
+            <div class="sidebar-footer">
+
+                {% block sidebar_footer %}
+
+                <a href="{% url 'configuracion' %}" class="nav-link">
+                   <i class="fa-solid fa-gear"></i>
+                   <span>Configuración</span>
+                </a>
+
+                <a href="#" class="nav-link logout-link">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Cerrar sesión</span>
+                </a>
+
+                {% endblock %}
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================
+             CONTENIDO PRINCIPAL
+        ================================== -->
+
+        <main class="main-content" id="mainContent">
+
+
+            <!-- ENCABEZADO -->
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button class="menu-toggle"
+                            id="menuToggle"
+                            aria-label="Mostrar u ocultar menú">
+
+                        <i class="fa-solid fa-bars"></i>
+
+                    </button>
+
+                    <div class="page-heading">
+
+                        <span class="page-breadcrumb">
+                            SIDINO / {% block breadcrumb %}Inicio{% endblock %}
+                        </span>
+
+                        <h1>
+                            {% block page_title %}Panel de Control{% endblock %}
+                        </h1>
+
+                    </div>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <!-- NOTIFICACIONES -->
+                    <button class="topbar-button"
+                            aria-label="Notificaciones">
+
+                        <i class="fa-regular fa-bell"></i>
+
+                    </button>
+
+
+                    <!-- PERFIL -->
+                    <div class="topbar-profile">
+
+                        <div class="topbar-avatar">
+                            {% block topbar_avatar %}U{% endblock %}
+                        </div>
+
+                        <div class="topbar-user-info">
+
+                            <strong>
+                                {% block topbar_name %}Usuario{% endblock %}
+                            </strong>
+
+                            <span>
+                                {% block topbar_role %}Rol{% endblock %}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================
+                 CONTENIDO DE CADA PÁGINA
+            ================================== -->
+
+            <section class="page-content">
+
+                {% block content %}
+
+                <!--
+                    Aquí van las tarjetas, tablas,
+                    formularios, calendarios, gráficos, etc.
+                -->
+
+                {% endblock %}
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="{% static 'js/dashboard.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
+
+</body>
+
+</html>

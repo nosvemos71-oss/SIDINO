@@ -1,0 +1,768 @@
+/* ==========================================
+   SIDINO - PLANTILLA GENERAL
+   ========================================== */
+
+/* ---------- VARIABLES ---------- */
+
+:root {
+    --primary: #0caaa3;
+    --primary-hover: #098e89;
+    --primary-soft: #e5f7f5;
+
+    --background: #f4f7fb;
+    --surface: #ffffff;
+    --surface-secondary: #f8fafc;
+
+    --text: #253650;
+    --text-muted: #8492a6;
+
+    --border: #e7edf4;
+
+    --sidebar-bg: #142b43;
+    --sidebar-text: #dbe5ef;
+    --sidebar-muted: #93a7bc;
+
+    --danger: #e7656b;
+    --success: #28a879;
+    --warning: #f0a44a;
+    --info: #4d91e8;
+
+    --radius: 14px;
+    --radius-small: 9px;
+
+    --shadow: 0 4px 18px rgba(30, 50, 80, 0.05);
+
+    --sidebar-width: 255px;
+    --sidebar-collapsed-width: 78px;
+
+    --transition: 0.25s ease;
+}
+
+
+/* ==========================================
+   TEMAS
+   ========================================== */
+
+/* CLARO */
+
+[data-theme="light"] {
+    --background: #f4f7fb;
+    --surface: #ffffff;
+    --surface-secondary: #f8fafc;
+
+    --text: #253650;
+    --text-muted: #8492a6;
+
+    --border: #e7edf4;
+}
+
+
+/* OSCURO */
+
+[data-theme="dark"] {
+    --background: #0c1220;
+    --surface: #151f32;
+    --surface-secondary: #1c2940;
+
+    --text: #edf3fc;
+    --text-muted: #9baec7;
+
+    --border: #29364e;
+
+    --sidebar-bg: #080d17;
+    --sidebar-text: #dbe5ef;
+    --sidebar-muted: #8294ac;
+
+    --primary-soft: #173c42;
+}
+
+
+/* AZUL */
+
+[data-theme="blue"] {
+    --background: #eaf2fc;
+    --surface: #ffffff;
+    --surface-secondary: #f2f7ff;
+
+    --text: #18365d;
+    --text-muted: #7188a7;
+
+    --border: #dce8f7;
+
+    --sidebar-bg: #10345c;
+    --sidebar-text: #e1edff;
+    --sidebar-muted: #9db9d9;
+
+    --primary: #347de0;
+    --primary-hover: #2466c1;
+    --primary-soft: #e4efff;
+}
+
+
+/* GRISES */
+
+[data-theme="gray"] {
+    --background: #eeeeef;
+    --surface: #ffffff;
+    --surface-secondary: #f6f6f7;
+
+    --text: #343b46;
+    --text-muted: #858c96;
+
+    --border: #e2e4e7;
+
+    --sidebar-bg: #333b47;
+    --sidebar-text: #f0f2f5;
+    --sidebar-muted: #b2bac5;
+
+    --primary: #697789;
+    --primary-hover: #536174;
+    --primary-soft: #e9edf1;
+}
+
+
+/* ==========================================
+   RESET GENERAL
+   ========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+
+    min-height: 100vh;
+
+    transition: background var(--transition),
+                color var(--transition);
+}
+
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* ==========================================
+   ESTRUCTURA GENERAL
+   ========================================== */
+
+.app-layout {
+    min-height: 100vh;
+}
+
+
+/* ==========================================
+   SIDEBAR
+   ========================================== */
+
+.sidebar {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: var(--sidebar-width);
+    height: 100vh;
+
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 22px 15px;
+
+    z-index: 1000;
+
+    transition: width var(--transition),
+                transform var(--transition);
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+/* ---------- LOGO ---------- */
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 4px 7px 22px;
+}
+
+
+.brand-logo {
+    width: 43px;
+    height: 43px;
+
+    min-width: 43px;
+
+    border-radius: 12px;
+
+    background: rgba(12, 170, 163, 0.15);
+
+    color: #18c8bd;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+
+.brand-info h2 {
+    font-size: 19px;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+}
+
+
+.brand-info span {
+    font-size: 11px;
+
+    color: var(--sidebar-muted);
+}
+
+
+/* ---------- PERFIL ---------- */
+
+.sidebar-user {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 15px 8px;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    margin-bottom: 22px;
+}
+
+
+.user-avatar {
+    width: 43px;
+    height: 43px;
+
+    min-width: 43px;
+
+    background: linear-gradient(135deg, #0caaa3, #46c7b8);
+
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 700;
+}
+
+
+.user-info {
+    min-width: 0;
+}
+
+
+.user-info h3 {
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.user-info span {
+    display: block;
+
+    color: var(--sidebar-muted);
+
+    font-size: 11px;
+
+    margin-top: 4px;
+}
+
+
+/* ---------- NAV ---------- */
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.nav-section-title {
+    color: var(--sidebar-muted);
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    padding: 0 10px;
+
+    margin-bottom: 8px;
+}
+
+
+.nav-link {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border-radius: 10px;
+
+    color: var(--sidebar-text);
+
+    font-size: 13px;
+
+    transition: background var(--transition),
+                color var(--transition);
+}
+
+
+.nav-link i {
+    width: 20px;
+    min-width: 20px;
+
+    text-align: center;
+
+    font-size: 16px;
+}
+
+
+.nav-link:hover {
+    background: rgba(255,255,255,0.07);
+}
+
+
+.nav-link.active {
+    background: var(--primary);
+
+    color: white;
+
+    font-weight: 600;
+}
+
+
+.nav-link.active:hover {
+    background: var(--primary-hover);
+}
+
+
+/* ---------- SIDEBAR INFERIOR ---------- */
+
+.sidebar-footer {
+    margin-top: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+
+.logout-link:hover {
+    color: #ff8585;
+    background: rgba(231, 101, 107, 0.12);
+}
+
+
+/* ==========================================
+   SIDEBAR REDUCIDO
+   ========================================== */
+
+body.sidebar-collapsed .sidebar {
+    width: var(--sidebar-collapsed-width);
+}
+
+
+body.sidebar-collapsed .brand-info,
+body.sidebar-collapsed .user-info,
+body.sidebar-collapsed .nav-section-title,
+body.sidebar-collapsed .nav-link span {
+    display: none;
+}
+
+
+body.sidebar-collapsed .sidebar-brand,
+body.sidebar-collapsed .sidebar-user {
+    justify-content: center;
+}
+
+
+body.sidebar-collapsed .nav-link {
+    justify-content: center;
+
+    padding: 13px 8px;
+}
+
+
+body.sidebar-collapsed .nav-link i {
+    font-size: 18px;
+}
+
+
+/* ==========================================
+   CONTENIDO PRINCIPAL
+   ========================================== */
+
+.main-content {
+    margin-left: var(--sidebar-width);
+
+    min-height: 100vh;
+
+    transition: margin var(--transition);
+}
+
+
+body.sidebar-collapsed .main-content {
+    margin-left: var(--sidebar-collapsed-width);
+}
+
+
+/* ==========================================
+   TOPBAR
+   ========================================== */
+
+.topbar {
+    height: 76px;
+
+    background: var(--surface);
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 28px;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+
+    transition: background var(--transition);
+}
+
+
+.topbar-left,
+.topbar-right {
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+}
+
+
+/* ---------- BOTÓN MENÚ ---------- */
+
+.menu-toggle {
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid var(--border);
+
+    background: var(--surface-secondary);
+    color: var(--text-muted);
+
+    border-radius: 10px;
+
+    transition: var(--transition);
+}
+
+
+.menu-toggle:hover {
+    background: var(--primary-soft);
+    color: var(--primary);
+}
+
+
+/* ---------- TÍTULOS ---------- */
+
+.page-heading {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+
+.page-breadcrumb {
+    font-size: 10px;
+
+    color: var(--text-muted);
+}
+
+
+.page-heading h1 {
+    font-size: 19px;
+    font-weight: 700;
+
+    color: var(--text);
+}
+
+
+/* ---------- BOTONES SUPERIORES ---------- */
+
+.topbar-button {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: var(--text-muted);
+
+    position: relative;
+}
+
+
+.topbar-button:hover {
+    background: var(--primary-soft);
+    color: var(--primary);
+}
+
+
+/* ---------- PERFIL SUPERIOR ---------- */
+
+.topbar-profile {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding-left: 12px;
+
+    border-left: 1px solid var(--border);
+}
+
+
+.topbar-avatar {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: var(--primary-soft);
+    color: var(--primary);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+.topbar-user-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.topbar-user-info strong {
+    font-size: 12px;
+    color: var(--text);
+}
+
+
+.topbar-user-info span {
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+
+/* ==========================================
+   CONTENIDO DE LAS PÁGINAS
+   ========================================== */
+
+.page-content {
+    width: 100%;
+    max-width: 1800px;
+
+    margin: 0 auto;
+
+    padding: 26px;
+}
+
+
+/* ==========================================
+   ELEMENTOS REUTILIZABLES
+   ========================================== */
+
+.panel-card {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 22px;
+
+    box-shadow: var(--shadow);
+}
+
+
+.panel-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+
+.panel-card-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+.panel-card-header p {
+    font-size: 12px;
+    color: var(--text-muted);
+
+    margin-top: 5px;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    body.sidebar-collapsed .main-content {
+        margin-left: 0;
+    }
+
+    body.sidebar-collapsed .sidebar {
+        width: var(--sidebar-width);
+    }
+
+    body.sidebar-collapsed .brand-info,
+    body.sidebar-collapsed .user-info,
+    body.sidebar-collapsed .nav-section-title,
+    body.sidebar-collapsed .nav-link span {
+        display: block;
+    }
+
+    body.sidebar-collapsed .nav-link {
+        justify-content: flex-start;
+    }
+
+    body.sidebar-collapsed .sidebar-brand,
+    body.sidebar-collapsed .sidebar-user {
+        justify-content: flex-start;
+    }
+
+    body.mobile-sidebar-open .sidebar {
+        transform: translateX(0);
+    }
+
+    .topbar {
+        padding: 0 18px;
+    }
+
+    .page-content {
+        padding: 20px;
+    }
+
+}
+
+
+/* ==========================================
+   CELULARES
+   ========================================== */
+
+@media (max-width: 600px) {
+
+    .topbar {
+        height: 65px;
+    }
+
+    .page-heading h1 {
+        font-size: 15px;
+    }
+
+    .page-breadcrumb {
+        font-size: 9px;
+    }
+
+    .topbar-user-info {
+        display: none;
+    }
+
+    .topbar-profile {
+        padding-left: 8px;
+    }
+
+    .topbar-left,
+    .topbar-right {
+        gap: 8px;
+    }
+
+    .page-content {
+        padding: 14px;
+    }
+
+}

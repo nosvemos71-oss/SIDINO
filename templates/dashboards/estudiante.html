@@ -1,0 +1,451 @@
+
+{% extends 'layouts/dashboard_base.html' %}
+{% load static %}
+
+{% block title %}Panel Estudiante | SIDINO{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboards/estudiante.css' %}">
+{% endblock %}
+
+{% block avatar %}ES{% endblock %}
+{% block user_name %}Estudiante{% endblock %}
+{% block user_role %}Estudiante{% endblock %}
+
+{% block topbar_avatar %}ES{% endblock %}
+{% block topbar_name %}Estudiante{% endblock %}
+{% block topbar_role %}Estudiante{% endblock %}
+
+{% block breadcrumb %}Inicio / Panel Estudiantil{% endblock %}
+{% block page_title %}Panel Estudiantil{% endblock %}
+
+{% block navigation %}
+<a href="/dashboard/estudiante/" class="nav-link">
+    <i class="fa-solid fa-house"></i><span>Inicio</span>
+</a>
+<a href="/dashboard/estudiante/notas/" class="nav-link">
+    <i class="fa-solid fa-clipboard-list"></i><span>Mis notas</span>
+</a>
+<a href="/dashboard/estudiante/horarios/" class="nav-link">
+    <i class="fa-solid fa-calendar-days"></i><span>Horarios</span>
+</a>
+<a href="/dashboard/estudiante/boletines/" class="nav-link">
+    <i class="fa-solid fa-file-lines"></i><span>Boletines</span>
+</a>
+<a href="/dashboard/estudiante/observaciones/" class="nav-link">
+    <i class="fa-solid fa-comment-dots"></i><span>Observaciones</span>
+</a>
+<a href="/dashboard/estudiante/historial/" class="nav-link">
+    <i class="fa-solid fa-clock-rotate-left"></i><span>Historial</span>
+</a>
+{% endblock %}
+
+{% block sidebar_footer %}
+<a href="/dashboard/configuracion/" class="nav-link">
+    <i class="fa-solid fa-gear"></i>
+    <span>Configuración</span>
+</a>
+
+<a href="#" class="nav-link logout-link">
+    <i class="fas fa-sign-out-alt"></i>
+    <span>Cerrar sesión</span>
+</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="student-dashboard">
+
+    <!-- Bienvenida -->
+    <section class="student-welcome">
+
+        <div class="student-welcome-info">
+            <span class="student-welcome-label">PORTAL ESTUDIANTIL</span>
+
+            <h2>¡Hola! Bienvenido a SIDINO</h2>
+
+            <p>
+                Consulta tus calificaciones, revisa tus horarios,
+                mantente al día con tus actividades académicas
+                y conoce tu progreso escolar.
+            </p>
+
+            <a href="#" class="student-primary-button">
+                <i class="fas fa-graduation-cap"></i>
+                Consultar mis notas
+            </a>
+        </div>
+
+        <div class="student-welcome-illustration">
+            <i class="fas fa-user-graduate"></i>
+        </div>
+
+    </section>
+
+    <!-- Estadísticas -->
+    <section class="student-stats">
+
+        <div class="student-stat-card">
+            <div class="student-stat-icon blue">
+                <i class="fas fa-chart-line"></i>
+            </div>
+
+            <div>
+                <span class="student-stat-title">Promedio general</span>
+                <h3>4.2</h3>
+                <p>Desempeño académico</p>
+            </div>
+        </div>
+
+        <div class="student-stat-card">
+            <div class="student-stat-icon purple">
+                <i class="fas fa-book"></i>
+            </div>
+
+            <div>
+                <span class="student-stat-title">Materias</span>
+                <h3>12</h3>
+                <p>Asignaturas del periodo</p>
+            </div>
+        </div>
+
+        <div class="student-stat-card">
+            <div class="student-stat-icon green">
+                <i class="fas fa-check-circle"></i>
+            </div>
+
+            <div>
+                <span class="student-stat-title">Asistencia</span>
+                <h3>96%</h3>
+                <p>Asistencia acumulada</p>
+            </div>
+        </div>
+
+        <div class="student-stat-card">
+            <div class="student-stat-icon orange">
+                <i class="fas fa-tasks"></i>
+            </div>
+
+            <div>
+                <span class="student-stat-title">Actividades</span>
+                <h3>4</h3>
+                <p>Pendientes por revisar</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Accesos rápidos -->
+    <section class="student-section">
+
+        <div class="student-section-header">
+            <div>
+                <h2>Accesos rápidos</h2>
+                <p>Encuentra fácilmente tus herramientas académicas.</p>
+            </div>
+        </div>
+
+        <div class="student-quick-grid">
+
+            <a href="#" class="student-quick-card">
+                <div class="student-quick-icon blue">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+
+                <h3>Mis notas</h3>
+                <p>Consulta tus calificaciones por materia y periodo.</p>
+
+                <i class="fas fa-arrow-right student-quick-arrow"></i>
+            </a>
+
+            <a href="#" class="student-quick-card">
+                <div class="student-quick-icon purple">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+
+                <h3>Horarios</h3>
+                <p>Consulta tus clases y actividades programadas.</p>
+
+                <i class="fas fa-arrow-right student-quick-arrow"></i>
+            </a>
+
+            <a href="#" class="student-quick-card">
+                <div class="student-quick-icon green">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+
+                <h3>Boletines</h3>
+                <p>Visualiza tus informes académicos por periodo.</p>
+
+                <i class="fas fa-arrow-right student-quick-arrow"></i>
+            </a>
+
+            <a href="#" class="student-quick-card">
+                <div class="student-quick-icon orange">
+                    <i class="fas fa-comment-dots"></i>
+                </div>
+
+                <h3>Observaciones</h3>
+                <p>Revisa los comentarios de tus docentes.</p>
+
+                <i class="fas fa-arrow-right student-quick-arrow"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Rendimiento académico -->
+    <section class="student-section">
+
+        <div class="student-section-header">
+            <div>
+                <h2>Mi rendimiento académico</h2>
+                <p>Resumen de tus calificaciones por asignatura.</p>
+            </div>
+
+            <a href="#" class="student-see-more">
+                Ver todas <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="student-grades-card">
+
+            <div class="student-grade-row">
+                <div class="student-subject">
+                    <div class="subject-icon blue">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+
+                    <div>
+                        <h4>Matemáticas</h4>
+                        <p>Docente asignado</p>
+                    </div>
+                </div>
+
+                <div class="student-grade-progress">
+                    <div class="student-grade-bar">
+                        <div class="grade-fill blue-fill" style="width:85%"></div>
+                    </div>
+                </div>
+
+                <span class="student-grade excellent">4.5</span>
+            </div>
+
+            <div class="student-grade-row">
+                <div class="student-subject">
+                    <div class="subject-icon purple">
+                        <i class="fas fa-book"></i>
+                    </div>
+
+                    <div>
+                        <h4>Lengua castellana</h4>
+                        <p>Docente asignado</p>
+                    </div>
+                </div>
+
+                <div class="student-grade-progress">
+                    <div class="student-grade-bar">
+                        <div class="grade-fill purple-fill" style="width:78%"></div>
+                    </div>
+                </div>
+
+                <span class="student-grade good">4.0</span>
+            </div>
+
+            <div class="student-grade-row">
+                <div class="student-subject">
+                    <div class="subject-icon green">
+                        <i class="fas fa-flask"></i>
+                    </div>
+
+                    <div>
+                        <h4>Ciencias naturales</h4>
+                        <p>Docente asignado</p>
+                    </div>
+                </div>
+
+                <div class="student-grade-progress">
+                    <div class="student-grade-bar">
+                        <div class="grade-fill green-fill" style="width:92%"></div>
+                    </div>
+                </div>
+
+                <span class="student-grade excellent">4.8</span>
+            </div>
+
+            <div class="student-grade-row">
+                <div class="student-subject">
+                    <div class="subject-icon orange">
+                        <i class="fas fa-globe"></i>
+                    </div>
+
+                    <div>
+                        <h4>Ciencias sociales</h4>
+                        <p>Docente asignado</p>
+                    </div>
+                </div>
+
+                <div class="student-grade-progress">
+                    <div class="student-grade-bar">
+                        <div class="grade-fill orange-fill" style="width:70%"></div>
+                    </div>
+                </div>
+
+                <span class="student-grade good">3.8</span>
+            </div>
+
+            <div class="student-grade-row">
+                <div class="student-subject">
+                    <div class="subject-icon red">
+                        <i class="fas fa-language"></i>
+                    </div>
+
+                    <div>
+                        <h4>Inglés</h4>
+                        <p>Docente asignado</p>
+                    </div>
+                </div>
+
+                <div class="student-grade-progress">
+                    <div class="student-grade-bar">
+                        <div class="grade-fill red-fill" style="width:65%"></div>
+                    </div>
+                </div>
+
+                <span class="student-grade average">3.5</span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Parte inferior -->
+    <section class="student-bottom-grid">
+
+        <!-- Próximas clases -->
+        <div class="student-panel">
+
+            <div class="student-section-header">
+                <div>
+                    <h2>Mi horario</h2>
+                    <p>Próximas clases programadas.</p>
+                </div>
+
+                <a href="#" class="student-see-more">
+                    Ver horario
+                </a>
+            </div>
+
+            <div class="student-schedule-list">
+
+                <div class="student-schedule-item">
+                    <div class="schedule-time">
+                        <strong>07:00</strong>
+                        <span>AM</span>
+                    </div>
+
+                    <div class="schedule-line blue-line"></div>
+
+                    <div class="schedule-details">
+                        <h4>Matemáticas</h4>
+                        <p>Salón 204 · Grado 10° A</p>
+                    </div>
+
+                    <span class="schedule-badge blue-badge">Próxima</span>
+                </div>
+
+                <div class="student-schedule-item">
+                    <div class="schedule-time">
+                        <strong>09:00</strong>
+                        <span>AM</span>
+                    </div>
+
+                    <div class="schedule-line purple-line"></div>
+
+                    <div class="schedule-details">
+                        <h4>Lengua castellana</h4>
+                        <p>Salón 105 · Grado 10° A</p>
+                    </div>
+                </div>
+
+                <div class="student-schedule-item">
+                    <div class="schedule-time">
+                        <strong>10:30</strong>
+                        <span>AM</span>
+                    </div>
+
+                    <div class="schedule-line green-line"></div>
+
+                    <div class="schedule-details">
+                        <h4>Ciencias naturales</h4>
+                        <p>Laboratorio · Grado 10° A</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Observaciones -->
+        <div class="student-panel">
+
+            <div class="student-section-header">
+                <div>
+                    <h2>Observaciones recientes</h2>
+                    <p>Comentarios de tus docentes.</p>
+                </div>
+            </div>
+
+            <div class="student-observation">
+
+                <div class="observation-header">
+                    <div class="observation-icon blue">
+                        <i class="fas fa-user"></i>
+                    </div>
+
+                    <div>
+                        <h4>Matemáticas</h4>
+                        <span>Docente · Hoy</span>
+                    </div>
+                </div>
+
+                <p>
+                    Se destaca la participación activa en clase
+                    y el buen desarrollo de las actividades.
+                </p>
+
+            </div>
+
+            <div class="student-observation">
+
+                <div class="observation-header">
+                    <div class="observation-icon purple">
+                        <i class="fas fa-user"></i>
+                    </div>
+
+                    <div>
+                        <h4>Lengua castellana</h4>
+                        <span>Docente · Ayer</span>
+                    </div>
+                </div>
+
+                <p>
+                    Se recomienda fortalecer la lectura y
+                    entregar las actividades en las fechas establecidas.
+                </p>
+
+            </div>
+
+            <a href="#" class="student-observations-link">
+                Ver todas las observaciones
+                <i class="fas fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}
