@@ -1,4 +1,5 @@
 
+from django.conf import settings
 from django.urls import path
 from . import views
 
@@ -206,3 +207,10 @@ path(
     name="configuracion",
 ),
 ]
+
+# Login de desarrollo: solo existe con DEBUG=True. Reemplazado por el login real.
+if settings.DEBUG:
+    urlpatterns += [
+        path("dev/login/", views.dev_login, name="dev_login"),
+        path("dev/login/<int:id_usuario>/", views.dev_login, name="dev_login_as"),
+    ]

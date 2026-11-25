@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login de desarrollo | SIDINO</title>
+    <style>
+        body{font-family:system-ui,sans-serif;background:#f3f4f6;margin:0;padding:1.5rem}
+        .box{background:#fff;max-width:640px;margin:auto;padding:2rem;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+        .warn{background:#fef3c7;color:#92400e;padding:.75rem 1rem;border-radius:8px;font-size:.9rem}
+        a.u{display:flex;justify-content:space-between;padding:.7rem 1rem;margin-top:.5rem;border:1px solid #e2e8f0;border-radius:8px;color:#1e293b;text-decoration:none}
+        a.u:hover{background:#eff6ff} small{color:#64748b}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Entrar como…</h1>
+        <p class="warn">Solo desarrollo (DEBUG). No pide contraseña. Se reemplaza por el login real.</p>
+        {% for u in usuarios %}
+        <a class="u" href="{% url 'dev_login_as' u.id_usuario %}"><span>{{ u.nombre }}</span><small>{{ u.rol.nombre_rol }}</small></a>
+        {% endfor %}
+    </div>
+</body>
+</html>
