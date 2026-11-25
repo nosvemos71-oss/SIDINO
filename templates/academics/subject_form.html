@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar asignatura | SIDINO</title>
+</head>
+<body>
+    <h1>Registrar asignatura</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Guardar asignatura
+        </button>
+    </form>
+
+    <a href="{% url 'academics:subject-list' %}">
+        Volver a las asignaturas
+    </a>
+</body>
+</html>
