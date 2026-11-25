@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Áreas académicas | SIDINO</title>
+</head>
+<body>
+    <h1>Áreas académicas</h1>
+
+    <a href="{% url 'academics:area-create' %}">
+        Registrar área
+    </a>
+
+    <a href="{% url 'academics:subject-list' %}">
+        Consultar asignaturas
+    </a>
+
+    <hr>
+
+    {% for area in areas %}
+        <article>
+            <h2>
+                <a href="{% url 'academics:area-detail' area.pk %}">
+                    {{ area.name }}
+                </a>
+            </h2>
+
+            <p>{{ area.description }}</p>
+
+            <p>
+                Estado:
+                {% if area.is_active %}
+                    Activa
+                {% else %}
+                    Inactiva
+                {% endif %}
+            </p>
+
+            <p>
+                Asignaturas: {{ area.subjects.count }}
+            </p>
+        </article>
+    {% empty %}
+        <p>No hay áreas registradas.</p>
+    {% endfor %}
+</body>
+</html>

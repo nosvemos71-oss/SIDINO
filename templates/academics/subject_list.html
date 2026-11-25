@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Asignaturas | SIDINO</title>
+</head>
+<body>
+    <h1>Asignaturas académicas</h1>
+
+    <a href="{% url 'academics:subject-create' %}">
+        Registrar asignatura
+    </a>
+
+    <a href="{% url 'academics:area-list' %}">
+        Consultar áreas
+    </a>
+
+    <hr>
+
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Clave</th>
+                <th>Asignatura</th>
+                <th>Área</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for subject in subjects %}
+                <tr>
+                    <td>{{ subject.code }}</td>
+                    <td>{{ subject.name }}</td>
+                    <td>{{ subject.area.name }}</td>
+                    <td>
+                        {% if subject.is_active %}
+                            Activa
+                        {% else %}
+                            Inactiva
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">
+                        No hay asignaturas registradas.
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

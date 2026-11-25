@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ area.name }} | SIDINO</title>
+</head>
+<body>
+    <h1>{{ area.name }}</h1>
+
+    <p>{{ area.description }}</p>
+
+    <h2>Asignaturas del área</h2>
+
+    <a href="{% url 'academics:subject-create' %}">
+        Registrar asignatura
+    </a>
+
+    <ul>
+        {% for subject in subjects %}
+            <li>
+                {{ subject.name }} - {{ subject.code }}
+            </li>
+        {% empty %}
+            <li>
+                Esta área todavía no tiene asignaturas.
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'academics:area-list' %}">
+        Volver a las áreas
+    </a>
+</body>
+</html>
