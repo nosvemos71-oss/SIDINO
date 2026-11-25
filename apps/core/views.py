@@ -1,24 +1,42 @@
-from django.shortcuts import render
+from django.conf import settings
+from django.http import Http404
+from django.shortcuts import redirect, render
+
+from .access import SESSION_KEY, redirect_to_own_dashboard, role_required
+from .models import Usuario
+
 
 def dashboard(request):
-    return render(request, "dashboard_preview.html")
+    """Raíz del sitio: envía a cada usuario a SU dashboard según su rol."""
+    return redirect_to_own_dashboard(request)
 
+
+@role_required("rector")
 def dashboard_rector(request):
     return render(request, "dashboard_preview.html")
 
+
+@role_required("administrativo")
 def dashboard_administrativo(request):
     return render(request, "dashboards/administrativo.html")
 
+
+@role_required("coordinador")
 def dashboard_coordinador(request):
     return render(request, "dashboards/coordinador.html")
 
 
+@role_required("docente")
 def dashboard_docente(request):
     return render(request, "dashboards/docente.html")
 
+
+@role_required("estudiante")
 def dashboard_estudiante(request):
     return render(request, "dashboards/estudiante.html")
 
+
+@role_required("acudiente")
 def dashboard_acudiente(request):
     return render(request, "dashboards/acudiente.html")
 
@@ -262,11 +280,12 @@ RECTOR_MODULES = {
 }
 
 
+@role_required("rector")
 def rector_module(request, module):
     data = RECTOR_MODULES.get(module)
 
     if data is None:
-        return render(request, "404.html", status=404)
+        raise Http404("Módulo no encontrado")
 
     context = {
         "module_key": module,
@@ -448,11 +467,11 @@ PANEL_MODULES = {
 }
 
 
+@role_required(kwarg="role")
 def panel_module(request, role, module):
     panel = PANEL_MODULES.get(role)
 
     if not panel or module not in panel["modules"]:
-        from django.http import Http404
         raise Http404("Módulo no encontrado")
 
     data = panel["modules"][module]
@@ -739,6 +758,23 @@ PANEL_MODULES.update({
 # CONFIGURACIÓN GENERAL SIDINO
 # ==========================================
 
+@role_required()
 def configuracion(request):
     return render(request, "dashboards/modules/shared/configuracion.html")
 
+
+
+# ==========================================
+# LOGIN DE DESARROLLO (solo DEBUG)
+# Sirve para probar los dashboards mientras no exista el login real.
+# Se registra únicamente si DEBUG=True (ver urls.py).
+# ==========================================
+
+def dev_login(request, id_usuario=None):
+    if not settings.DEBUG:
+        raise Http404
+    if id_usuario is not None:
+        request.session[SESSION_KEY] = id_usuario
+        return redirect("dashboard")
+    usuarios = Usuario.objects.select_related("rol").order_by("rol_id", "nombre")
+    return render(request, "dev_login.html", {"usuarios": usuarios})

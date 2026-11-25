@@ -51,17 +51,17 @@
             <div class="sidebar-user">
 
                 <div class="user-avatar">
-                    {% block avatar %}U{% endblock %}
+                    {% block avatar %}{{ usuario.iniciales|default:"U" }}{% endblock %}
                 </div>
 
                 <div class="user-info">
 
                     <h3>
-                        {% block user_name %}Usuario SIDINO{% endblock %}
+                        {% block user_name %}{{ usuario.nombre|default:"Usuario SIDINO" }}{% endblock %}
                     </h3>
 
                     <span>
-                        {% block user_role %}Usuario{% endblock %}
+                        {% block user_role %}{{ rol_nombre|default:"Usuario" }}{% endblock %}
                     </span>
 
                 </div>
@@ -159,17 +159,17 @@
                     <div class="topbar-profile">
 
                         <div class="topbar-avatar">
-                            {% block topbar_avatar %}U{% endblock %}
+                            {% block topbar_avatar %}{{ usuario.iniciales|default:"U" }}{% endblock %}
                         </div>
 
                         <div class="topbar-user-info">
 
                             <strong>
-                                {% block topbar_name %}Usuario{% endblock %}
+                                {% block topbar_name %}{{ usuario.nombre|default:"Usuario" }}{% endblock %}
                             </strong>
 
                             <span>
-                                {% block topbar_role %}Rol{% endblock %}
+                                {% block topbar_role %}{{ rol_descripcion|default:"Rol" }}{% endblock %}
                             </span>
 
                         </div>
