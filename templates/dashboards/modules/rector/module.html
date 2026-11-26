@@ -16,10 +16,12 @@
     <span>Inicio</span>
 </a>
 
+{% if request.user.is_superuser or perms.auth.view_user or perms.auth.change_user %}
 <a href="/dashboard/rector/usuarios/" class="nav-link {% if module_key == 'usuarios' %}active{% endif %}">
     <i class="fa-solid fa-users"></i>
     <span>Usuarios</span>
 </a>
+{% endif %}
 
 <a href="/dashboard/rector/materias/" class="nav-link {% if module_key == 'materias' %}active{% endif %}">
     <i class="fa-solid fa-book"></i>

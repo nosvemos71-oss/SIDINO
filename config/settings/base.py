@@ -1,4 +1,3 @@
-
 """Configuración base de SIDINO (común a todos los entornos)."""
 from pathlib import Path
 
@@ -25,8 +24,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Aplicaciones del proyecto
     "apps.core",
-    "apps.permissions.apps.PermissionsConfig",
-    "apps.users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [

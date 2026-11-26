@@ -33,8 +33,6 @@
     --shadow: 0 4px 18px rgba(30, 50, 80, 0.05);
 
     --sidebar-width: 255px;
-    --sidebar-collapsed-width: 78px;
-
     --transition: 0.25s ease;
 }
 
@@ -202,6 +200,10 @@ a {
 
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+.sidebar-overlay {
+    display: none;
 }
 
 
@@ -424,41 +426,6 @@ a {
 
 
 /* ==========================================
-   SIDEBAR REDUCIDO
-   ========================================== */
-
-body.sidebar-collapsed .sidebar {
-    width: var(--sidebar-collapsed-width);
-}
-
-
-body.sidebar-collapsed .brand-info,
-body.sidebar-collapsed .user-info,
-body.sidebar-collapsed .nav-section-title,
-body.sidebar-collapsed .nav-link span {
-    display: none;
-}
-
-
-body.sidebar-collapsed .sidebar-brand,
-body.sidebar-collapsed .sidebar-user {
-    justify-content: center;
-}
-
-
-body.sidebar-collapsed .nav-link {
-    justify-content: center;
-
-    padding: 13px 8px;
-}
-
-
-body.sidebar-collapsed .nav-link i {
-    font-size: 18px;
-}
-
-
-/* ==========================================
    CONTENIDO PRINCIPAL
    ========================================== */
 
@@ -471,8 +438,13 @@ body.sidebar-collapsed .nav-link i {
 }
 
 
-body.sidebar-collapsed .main-content {
-    margin-left: var(--sidebar-collapsed-width);
+body.sidebar-hidden .sidebar {
+    transform: translateX(-100%);
+}
+
+
+body.sidebar-hidden .main-content {
+    margin-left: 0;
 }
 
 
@@ -696,35 +668,30 @@ body.sidebar-collapsed .main-content {
 @media (max-width: 900px) {
 
     .sidebar {
+        top: 76px;
+        height: calc(100vh - 76px);
         transform: translateX(-100%);
+    }
+
+    .sidebar-overlay {
+        position: fixed;
+        inset: 76px 0 0;
+        z-index: 999;
+        display: block;
+        border: 0;
+        background: rgba(12, 18, 32, 0.45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--transition);
+    }
+
+    body.mobile-sidebar-open .sidebar-overlay {
+        opacity: 1;
+        pointer-events: auto;
     }
 
     .main-content {
         margin-left: 0;
-    }
-
-    body.sidebar-collapsed .main-content {
-        margin-left: 0;
-    }
-
-    body.sidebar-collapsed .sidebar {
-        width: var(--sidebar-width);
-    }
-
-    body.sidebar-collapsed .brand-info,
-    body.sidebar-collapsed .user-info,
-    body.sidebar-collapsed .nav-section-title,
-    body.sidebar-collapsed .nav-link span {
-        display: block;
-    }
-
-    body.sidebar-collapsed .nav-link {
-        justify-content: flex-start;
-    }
-
-    body.sidebar-collapsed .sidebar-brand,
-    body.sidebar-collapsed .sidebar-user {
-        justify-content: flex-start;
     }
 
     body.mobile-sidebar-open .sidebar {
@@ -750,6 +717,15 @@ body.sidebar-collapsed .main-content {
 
     .topbar {
         height: 65px;
+    }
+
+    .sidebar {
+        top: 65px;
+        height: calc(100vh - 65px);
+    }
+
+    .sidebar-overlay {
+        top: 65px;
     }
 
     .page-heading h1 {

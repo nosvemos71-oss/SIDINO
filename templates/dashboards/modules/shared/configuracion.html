@@ -11,25 +11,9 @@
 {% endblock %}
 
 {% block navigation %}
-<a href="/dashboard/rector/" class="nav-link">
-    <i class="fa-solid fa-house"></i><span>Rector</span>
+<a href="{{ dashboard_url }}" class="nav-link">
+    <i class="fa-solid fa-house"></i><span>Inicio · {{ dashboard_role }}</span>
 </a>
-<a href="/dashboard/administrativo/" class="nav-link">
-    <i class="fa-solid fa-user-gear"></i><span>Administrativo</span>
-</a>
-<a href="/dashboard/coordinador/" class="nav-link">
-    <i class="fa-solid fa-users-gear"></i><span>Coordinador</span>
-</a>
-<a href="/dashboard/docente/" class="nav-link">
-    <i class="fa-solid fa-chalkboard-user"></i><span>Docente</span>
-</a>
-<a href="/dashboard/estudiante/" class="nav-link">
-    <i class="fa-solid fa-user-graduate"></i><span>Estudiante</span>
-</a>
-<a href="/dashboard/acudiente/" class="nav-link">
-    <i class="fa-solid fa-users"></i><span>Acudiente</span>
-</a>
-
 {% endblock %}
 
 {% block content %}
