@@ -1,111 +1,301 @@
+{% extends "layouts/dashboard_base.html" %}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios institucionales | SIDINO</title>
-</head>
-<body>
+{% block title %}Usuarios institucionales | SIDINO{% endblock %}
 
-    <h1>Usuarios institucionales</h1>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboards/rector_modules.css' %}">
+{% endblock %}
+
+{% block avatar %}{{ request.user.username|first|upper }}{% endblock %}
+{% block user_name %}{{ request.user.get_full_name|default:request.user.username }}{% endblock %}
+
+{% block user_role %}
+    {% for group in request.user.groups.all %}
+        {{ group.name }}{% if not forloop.last %}, {% endif %}
+    {% empty %}
+        Usuario institucional
+    {% endfor %}
+{% endblock %}
+
+{% block topbar_avatar %}{{ request.user.username|first|upper }}{% endblock %}
+{% block topbar_name %}{{ request.user.get_full_name|default:request.user.username }}{% endblock %}
+
+{% block topbar_role %}
+    {% for group in request.user.groups.all %}
+        {{ group.name }}{% if not forloop.last %}, {% endif %}
+    {% empty %}
+        Usuario institucional
+    {% endfor %}
+{% endblock %}
+
+{% block navigation %}
+<a href="/inicio/" class="nav-link">
+    <i class="fa-solid fa-house"></i>
+    <span>Inicio</span>
+</a>
+
+<a href="/dashboard/rector/usuarios/" class="nav-link active">
+    <i class="fa-solid fa-users"></i>
+    <span>Usuarios</span>
+</a>
+
+<a href="/dashboard/rector/materias/" class="nav-link">
+    <i class="fa-solid fa-book"></i>
+    <span>Materias</span>
+</a>
+
+<a href="/dashboard/rector/cursos/" class="nav-link">
+    <i class="fa-solid fa-graduation-cap"></i>
+    <span>Cursos</span>
+</a>
+
+<a href="/dashboard/rector/salones/" class="nav-link">
+    <i class="fa-solid fa-door-open"></i>
+    <span>Salones</span>
+</a>
+
+<a href="/dashboard/rector/horarios/" class="nav-link">
+    <i class="fa-solid fa-calendar"></i>
+    <span>Horarios</span>
+</a>
+
+<a href="/dashboard/rector/periodos/" class="nav-link">
+    <i class="fa-solid fa-calendar-days"></i>
+    <span>Periodos</span>
+</a>
+
+<a href="/dashboard/rector/asignaciones/" class="nav-link">
+    <i class="fa-solid fa-clipboard-list"></i>
+    <span>Asignaciones</span>
+</a>
+
+<a href="/dashboard/rector/matriculas/" class="nav-link">
+    <i class="fa-solid fa-file-lines"></i>
+    <span>Matrículas</span>
+</a>
+
+<a href="/dashboard/rector/acudientes/" class="nav-link">
+    <i class="fa-solid fa-user-group"></i>
+    <span>Acudientes</span>
+</a>
+
+<a href="/dashboard/rector/historial/" class="nav-link">
+    <i class="fa-solid fa-clock-rotate-left"></i>
+    <span>Historial</span>
+</a>
+
+<a href="/dashboard/rector/reportes/" class="nav-link">
+    <i class="fa-solid fa-chart-column"></i>
+    <span>Reportes</span>
+</a>
+{% endblock %}
+
+{% block sidebar_footer %}
+<a href="{% url 'configuracion' %}" class="nav-link">
+    <i class="fa-solid fa-gear"></i>
+    <span>Configuración</span>
+</a>
+
+<form action="{% url 'logout' %}" method="post" class="logout-form">
+    {% csrf_token %}
+    <button type="submit" class="nav-link logout-link">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Cerrar sesión</span>
+    </button>
+</form>
+{% endblock %}
+
+{% block breadcrumb %}Inicio / Usuarios institucionales{% endblock %}
+{% block page_title %}Usuarios institucionales{% endblock %}
+
+{% block content %}
+<div class="rector-module">
+
+    <section class="module-heading">
+        <div class="module-heading-info">
+            <div class="module-icon">
+                <i class="fa-solid fa-users"></i>
+            </div>
+
+            <div>
+                <h1>Usuarios institucionales</h1>
+                <p>Consulta y administra las cuentas de los usuarios de SIDINO.</p>
+            </div>
+        </div>
+
+        <a href="{% url 'users:create' %}" class="module-primary-btn">
+            <i class="fa-solid fa-plus"></i>
+            Crear usuario
+        </a>
+    </section>
 
     {% if messages %}
+    <section class="module-toolbar">
         {% for message in messages %}
-            <p>{{ message }}</p>
+        <span class="module-status {% if message.tags == 'success' %}status-success{% else %}status-neutral{% endif %}">
+            {{ message }}
+        </span>
         {% endfor %}
+    </section>
     {% endif %}
 
-    <a href="{% url 'users:create' %}">
-        Crear usuario
-    </a>
+    <section class="module-toolbar">
 
-    <form method="get">
-        <input
-            type="text"
-            name="q"
-            value="{{ search }}"
-            placeholder="Buscar usuario..."
-        >
-        <button type="submit">Buscar</button>
-        <a href="{% url 'users:list' %}">Limpiar</a>
-    </form>
+        <form method="get" class="module-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
 
-    <table border="1" cellpadding="8">
-        <thead>
-            <tr>
-                <th>Usuario</th>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Rol</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
+            <input
+                type="search"
+                name="q"
+                value="{{ search }}"
+                placeholder="Buscar por usuario, nombre o correo..."
+            >
 
-        <tbody>
-            {% for institutional_user in page_obj %}
-                <tr>
-                    <td>{{ institutional_user.username }}</td>
+            <button type="submit" class="module-primary-btn">
+                Buscar
+            </button>
+        </form>
 
-                    <td>
-                        {{ institutional_user.first_name }}
-                        {{ institutional_user.last_name }}
-                    </td>
-
-                    <td>{{ institutional_user.email }}</td>
-
-                    <td>
-                        {% for group in institutional_user.groups.all %}
-                            {{ group.name }}
-                        {% empty %}
-                            Sin rol
-                        {% endfor %}
-                    </td>
-
-                    <td>
-                        {% if institutional_user.is_active %}
-                            Activo
-                        {% else %}
-                            Inactivo
-                        {% endif %}
-                    </td>
-
-                    <td>
-                        <a href="{% url 'users:detail' institutional_user.pk %}">
-                            Consultar
-                        </a>
-
-                        <a href="{% url 'users:update' institutional_user.pk %}">
-                            Editar
-                        </a>
-                    </td>
-                </tr>
-            {% empty %}
-                <tr>
-                    <td colspan="6">
-                        No se encontraron usuarios.
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <div>
-        {% if page_obj.has_previous %}
-            <a href="?q={{ search|urlencode }}&page={{ page_obj.previous_page_number }}">
-                Anterior
+        <div class="module-toolbar-actions">
+            <a href="{% url 'users:list' %}" class="module-secondary-btn">
+                <i class="fa-solid fa-rotate-left"></i>
+                Limpiar
             </a>
-        {% endif %}
+        </div>
 
-        Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+    </section>
 
-        {% if page_obj.has_next %}
-            <a href="?q={{ search|urlencode }}&page={{ page_obj.next_page_number }}">
-                Siguiente
-            </a>
-        {% endif %}
-    </div>
+    <section class="module-table-card">
 
-</body>
-</html>
+        <div class="module-table-header">
+            <div>
+                <h2>Listado de usuarios</h2>
+                <p>Información de las cuentas institucionales registradas.</p>
+            </div>
+
+            <span class="module-count">
+                {{ page_obj.paginator.count }} registros
+            </span>
+        </div>
+
+        <div class="module-table-container">
+            <table class="module-table">
+
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for institutional_user in page_obj %}
+                    <tr>
+
+                        <td>{{ institutional_user.username }}</td>
+
+                        <td>
+                            {{ institutional_user.first_name }}
+                            {{ institutional_user.last_name }}
+                        </td>
+
+                        <td>{{ institutional_user.email }}</td>
+
+                        <td>
+                            {% for group in institutional_user.groups.all %}
+                                {{ group.name }}{% if not forloop.last %}, {% endif %}
+                            {% empty %}
+                                Sin rol
+                            {% endfor %}
+                        </td>
+
+                        <td>
+                            {% if institutional_user.is_active %}
+                                <span class="module-status status-success">
+                                    Activo
+                                </span>
+                            {% else %}
+                                <span class="module-status status-neutral">
+                                    Inactivo
+                                </span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            <div class="module-row-actions">
+
+                                <a
+                                    href="{% url 'users:detail' institutional_user.pk %}"
+                                    class="row-action view-action"
+                                    title="Consultar usuario"
+                                    aria-label="Consultar usuario"
+                                >
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+
+                                <a
+                                    href="{% url 'users:update' institutional_user.pk %}"
+                                    class="row-action edit-action"
+                                    title="Editar usuario"
+                                    aria-label="Editar usuario"
+                                >
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+
+                            </div>
+                        </td>
+
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="module-empty">
+                            No se encontraron usuarios.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+        <div class="module-table-footer">
+
+            <div class="module-row-actions">
+
+                {% if page_obj.has_previous %}
+                <a
+                    href="?q={{ search|urlencode }}&page={{ page_obj.previous_page_number }}"
+                    class="module-secondary-btn"
+                >
+                    <i class="fa-solid fa-chevron-left"></i>
+                    Anterior
+                </a>
+                {% endif %}
+
+                <span>
+                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+                <a
+                    href="?q={{ search|urlencode }}&page={{ page_obj.next_page_number }}"
+                    class="module-secondary-btn"
+                >
+                    Siguiente
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+{% endblock %}

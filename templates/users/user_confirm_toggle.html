@@ -1,42 +1,219 @@
+{% extends "layouts/dashboard_base.html" %}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cambiar estado | SIDINO</title>
-</head>
-<body>
+{% block title %}Cambiar estado del usuario | SIDINO{% endblock %}
 
-    {% if institutional_user.is_active %}
-        <h1>Desactivar usuario</h1>
-        <p>
-            ¿Deseas desactivar la cuenta
-            {{ institutional_user.username }}?
-        </p>
-        <p>
-            El usuario ya no podrá iniciar sesión,
-            pero sus registros se conservarán.
-        </p>
-    {% else %}
-        <h1>Activar usuario</h1>
-        <p>
-            ¿Deseas activar la cuenta
-            {{ institutional_user.username }}?
-        </p>
-    {% endif %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboards/rector_modules.css' %}">
+{% endblock %}
 
-    <form
-        method="post"
-        action="{% url 'users:toggle_active' institutional_user.pk %}"
-    >
-        {% csrf_token %}
-        <button type="submit">Confirmar</button>
-    </form>
+{% block avatar %}{{ request.user.username|first|upper }}{% endblock %}
+{% block user_name %}{{ request.user.get_full_name|default:request.user.username }}{% endblock %}
 
-    <a href="{% url 'users:detail' institutional_user.pk %}">
-        Cancelar
-    </a>
+{% block user_role %}
+    {% for group in request.user.groups.all %}
+        {{ group.name }}{% if not forloop.last %}, {% endif %}
+    {% empty %}
+        Usuario institucional
+    {% endfor %}
+{% endblock %}
 
-</body>
-</html>
+{% block topbar_avatar %}{{ request.user.username|first|upper }}{% endblock %}
+{% block topbar_name %}{{ request.user.get_full_name|default:request.user.username }}{% endblock %}
+
+{% block topbar_role %}
+    {% for group in request.user.groups.all %}
+        {{ group.name }}{% if not forloop.last %}, {% endif %}
+    {% empty %}
+        Usuario institucional
+    {% endfor %}
+{% endblock %}
+
+{% block navigation %}
+<a href="/inicio/" class="nav-link">
+    <i class="fa-solid fa-house"></i>
+    <span>Inicio</span>
+</a>
+
+<a href="/dashboard/rector/usuarios/" class="nav-link active">
+    <i class="fa-solid fa-users"></i>
+    <span>Usuarios</span>
+</a>
+
+<a href="/dashboard/rector/materias/" class="nav-link">
+    <i class="fa-solid fa-book"></i>
+    <span>Materias</span>
+</a>
+
+<a href="/dashboard/rector/cursos/" class="nav-link">
+    <i class="fa-solid fa-graduation-cap"></i>
+    <span>Cursos</span>
+</a>
+
+<a href="/dashboard/rector/salones/" class="nav-link">
+    <i class="fa-solid fa-door-open"></i>
+    <span>Salones</span>
+</a>
+
+<a href="/dashboard/rector/horarios/" class="nav-link">
+    <i class="fa-solid fa-calendar"></i>
+    <span>Horarios</span>
+</a>
+
+<a href="/dashboard/rector/periodos/" class="nav-link">
+    <i class="fa-solid fa-calendar-days"></i>
+    <span>Periodos</span>
+</a>
+
+<a href="/dashboard/rector/asignaciones/" class="nav-link">
+    <i class="fa-solid fa-clipboard-list"></i>
+    <span>Asignaciones</span>
+</a>
+
+<a href="/dashboard/rector/matriculas/" class="nav-link">
+    <i class="fa-solid fa-file-lines"></i>
+    <span>Matrículas</span>
+</a>
+
+<a href="/dashboard/rector/acudientes/" class="nav-link">
+    <i class="fa-solid fa-user-group"></i>
+    <span>Acudientes</span>
+</a>
+
+<a href="/dashboard/rector/historial/" class="nav-link">
+    <i class="fa-solid fa-clock-rotate-left"></i>
+    <span>Historial</span>
+</a>
+
+<a href="/dashboard/rector/reportes/" class="nav-link">
+    <i class="fa-solid fa-chart-column"></i>
+    <span>Reportes</span>
+</a>
+{% endblock %}
+
+{% block sidebar_footer %}
+<a href="{% url 'configuracion' %}" class="nav-link">
+    <i class="fa-solid fa-gear"></i>
+    <span>Configuración</span>
+</a>
+
+<form action="{% url 'logout' %}" method="post" class="logout-form">
+    {% csrf_token %}
+    <button type="submit" class="nav-link logout-link">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Cerrar sesión</span>
+    </button>
+</form>
+{% endblock %}
+
+{% block breadcrumb %}Inicio / Usuarios / Cambiar estado{% endblock %}
+{% block page_title %}Cambiar estado del usuario{% endblock %}
+
+{% block content %}
+<div class="rector-module">
+
+    <section class="module-heading">
+        <div class="module-heading-info">
+            <div class="module-icon">
+                {% if institutional_user.is_active %}
+                    <i class="fa-solid fa-user-slash"></i>
+                {% else %}
+                    <i class="fa-solid fa-user-check"></i>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if institutional_user.is_active %}
+                    <h1>Desactivar usuario</h1>
+                    <p>Confirma el cambio de estado de esta cuenta.</p>
+                {% else %}
+                    <h1>Activar usuario</h1>
+                    <p>Confirma la activación de esta cuenta institucional.</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <section class="module-table-card">
+
+        <div class="module-table-header">
+            <div>
+                <h2>Confirmación</h2>
+                <p>Estás a punto de cambiar el estado de una cuenta.</p>
+            </div>
+        </div>
+
+        <div class="module-view-content">
+
+            <div class="module-view-item">
+                <label>Usuario</label>
+                <p>{{ institutional_user.username }}</p>
+            </div>
+
+            <div class="module-view-item">
+                <label>Estado actual</label>
+                <p>
+                    {% if institutional_user.is_active %}
+                        <span class="module-status status-success">Activo</span>
+                    {% else %}
+                        <span class="module-status status-neutral">Inactivo</span>
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="module-view-item">
+                <label>Acción solicitada</label>
+                <p>
+                    {% if institutional_user.is_active %}
+                        Desactivar cuenta
+                    {% else %}
+                        Activar cuenta
+                    {% endif %}
+                </p>
+            </div>
+
+        </div>
+
+        <div class="module-table-footer">
+
+            {% if institutional_user.is_active %}
+            <p>
+                El usuario ya no podrá iniciar sesión,
+                pero sus registros se conservarán.
+            </p>
+            {% else %}
+            <p>
+                El usuario podrá volver a iniciar sesión
+                cuando su cuenta esté activa.
+            </p>
+            {% endif %}
+
+            <form
+                method="post"
+                action="{% url 'users:toggle_active' institutional_user.pk %}"
+            >
+                {% csrf_token %}
+
+                <div class="module-form-actions">
+
+                    <a
+                        href="{% url 'users:detail' institutional_user.pk %}"
+                        class="module-secondary-btn"
+                    >
+                        Cancelar
+                    </a>
+
+                    <button type="submit" class="module-primary-btn">
+                        <i class="fa-solid fa-check"></i>
+                        Confirmar
+                    </button>
+
+                </div>
+            </form>
+
+        </div>
+
+    </section>
+
+</div>
+{% endblock %}

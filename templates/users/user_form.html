@@ -1,38 +1,227 @@
+{% extends "layouts/dashboard_base.html" %}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} | SIDINO</title>
-</head>
-<body>
+{% block title %}{{ title }} | SIDINO{% endblock %}
 
-    <h1>{{ title }}</h1>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboards/rector_modules.css' %}">
+{% endblock %}
 
-    <form method="post">
-        {% csrf_token %}
+{% block avatar %}{{ request.user.username|first|upper }}{% endblock %}
+{% block user_name %}{{ request.user.get_full_name|default:request.user.username }}{% endblock %}
 
-        {{ form.as_p }}
+{% block user_role %}
+    {% for group in request.user.groups.all %}
+        {{ group.name }}{% if not forloop.last %}, {% endif %}
+    {% empty %}
+        Usuario institucional
+    {% endfor %}
+{% endblock %}
 
-        <button type="submit">
-            {% if is_creation %}
-                Crear usuario
-            {% else %}
-                Guardar cambios
+{% block topbar_avatar %}{{ request.user.username|first|upper }}{% endblock %}
+{% block topbar_name %}{{ request.user.get_full_name|default:request.user.username }}{% endblock %}
+
+{% block topbar_role %}
+    {% for group in request.user.groups.all %}
+        {{ group.name }}{% if not forloop.last %}, {% endif %}
+    {% empty %}
+        Usuario institucional
+    {% endfor %}
+{% endblock %}
+
+{% block navigation %}
+<a href="/inicio/" class="nav-link">
+    <i class="fa-solid fa-house"></i>
+    <span>Inicio</span>
+</a>
+
+<a href="/dashboard/rector/usuarios/" class="nav-link active">
+    <i class="fa-solid fa-users"></i>
+    <span>Usuarios</span>
+</a>
+
+<a href="/dashboard/rector/materias/" class="nav-link">
+    <i class="fa-solid fa-book"></i>
+    <span>Materias</span>
+</a>
+
+<a href="/dashboard/rector/cursos/" class="nav-link">
+    <i class="fa-solid fa-graduation-cap"></i>
+    <span>Cursos</span>
+</a>
+
+<a href="/dashboard/rector/salones/" class="nav-link">
+    <i class="fa-solid fa-door-open"></i>
+    <span>Salones</span>
+</a>
+
+<a href="/dashboard/rector/horarios/" class="nav-link">
+    <i class="fa-solid fa-calendar"></i>
+    <span>Horarios</span>
+</a>
+
+<a href="/dashboard/rector/periodos/" class="nav-link">
+    <i class="fa-solid fa-calendar-days"></i>
+    <span>Periodos</span>
+</a>
+
+<a href="/dashboard/rector/asignaciones/" class="nav-link">
+    <i class="fa-solid fa-clipboard-list"></i>
+    <span>Asignaciones</span>
+</a>
+
+<a href="/dashboard/rector/matriculas/" class="nav-link">
+    <i class="fa-solid fa-file-lines"></i>
+    <span>Matrículas</span>
+</a>
+
+<a href="/dashboard/rector/acudientes/" class="nav-link">
+    <i class="fa-solid fa-user-group"></i>
+    <span>Acudientes</span>
+</a>
+
+<a href="/dashboard/rector/historial/" class="nav-link">
+    <i class="fa-solid fa-clock-rotate-left"></i>
+    <span>Historial</span>
+</a>
+
+<a href="/dashboard/rector/reportes/" class="nav-link">
+    <i class="fa-solid fa-chart-column"></i>
+    <span>Reportes</span>
+</a>
+{% endblock %}
+
+{% block sidebar_footer %}
+<a href="{% url 'configuracion' %}" class="nav-link">
+    <i class="fa-solid fa-gear"></i>
+    <span>Configuración</span>
+</a>
+
+<form action="{% url 'logout' %}" method="post" class="logout-form">
+    {% csrf_token %}
+    <button type="submit" class="nav-link logout-link">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Cerrar sesión</span>
+    </button>
+</form>
+{% endblock %}
+
+{% block breadcrumb %}
+Inicio / Usuarios / {% if is_creation %}Crear usuario{% else %}Editar usuario{% endif %}
+{% endblock %}
+
+{% block page_title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="rector-module">
+
+    <section class="module-heading">
+        <div class="module-heading-info">
+            <div class="module-icon">
+                {% if is_creation %}
+                    <i class="fa-solid fa-user-plus"></i>
+                {% else %}
+                    <i class="fa-solid fa-user-pen"></i>
+                {% endif %}
+            </div>
+
+            <div>
+                <h1>{{ title }}</h1>
+                <p>
+                    {% if is_creation %}
+                        Registra una nueva cuenta institucional.
+                    {% else %}
+                        Modifica la información de la cuenta seleccionada.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        <a
+            href="{% if institutional_user %}{% url 'users:detail' institutional_user.pk %}{% else %}{% url 'users:list' %}{% endif %}"
+            class="module-secondary-btn"
+        >
+            <i class="fa-solid fa-arrow-left"></i>
+            Volver
+        </a>
+    </section>
+
+    <section class="module-table-card">
+
+        <div class="module-table-header">
+            <div>
+                <h2>Información del usuario</h2>
+                <p>Completa los campos solicitados para continuar.</p>
+            </div>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="module-form-grid">
+
+                {% for hidden_field in form.hidden_fields %}
+                    {{ hidden_field }}
+                {% endfor %}
+
+                {% for field in form.visible_fields %}
+                <div class="module-form-group">
+
+                    {{ field.label_tag }}
+
+                    {{ field }}
+
+                    {% if field.help_text %}
+                    <small>{{ field.help_text }}</small>
+                    {% endif %}
+
+                    {% if field.errors %}
+                    <div class="module-status status-warning">
+                        {% for error in field.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                </div>
+                {% endfor %}
+
+            </div>
+
+            {% if form.non_field_errors %}
+            <div class="module-toolbar">
+                <span class="module-status status-warning">
+                    {{ form.non_field_errors }}
+                </span>
+            </div>
             {% endif %}
-        </button>
-    </form>
 
-    {% if institutional_user %}
-        <a href="{% url 'users:detail' institutional_user.pk %}">
-            Cancelar
-        </a>
-    {% else %}
-        <a href="{% url 'users:list' %}">
-            Cancelar
-        </a>
-    {% endif %}
+            <div class="module-table-footer">
+                <div class="module-form-actions">
 
-</body>
-</html>
+                    <a
+                        href="{% if institutional_user %}{% url 'users:detail' institutional_user.pk %}{% else %}{% url 'users:list' %}{% endif %}"
+                        class="module-secondary-btn"
+                    >
+                        Cancelar
+                    </a>
+
+                    <button type="submit" class="module-primary-btn">
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        {% if is_creation %}
+                            Crear usuario
+                        {% else %}
+                            Guardar cambios
+                        {% endif %}
+                    </button>
+
+                </div>
+            </div>
+
+        </form>
+
+    </section>
+
+</div>
+{% endblock %}
