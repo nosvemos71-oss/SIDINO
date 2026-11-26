@@ -46,10 +46,13 @@
     <span>Configuración</span>
 </a>
 
-<a href="#" class="nav-link logout-link">
-    <i class="fas fa-sign-out-alt"></i>
-    <span>Cerrar sesión</span>
-</a>
+<form action="{% url 'logout' %}" method="post" class="logout-form">
+    {% csrf_token %}
+    <button type="submit" class="nav-link logout-link">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Cerrar sesión</span>
+    </button>
+</form>
 {% endblock %}
 
 {% block content %}

@@ -404,6 +404,18 @@ a {
     border-top: 1px solid rgba(255,255,255,0.08);
 }
 
+.logout-form {
+    margin: 0;
+}
+
+.logout-link {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+}
 
 .logout-link:hover {
     color: #ff8585;

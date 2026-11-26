@@ -94,9 +94,10 @@ Usa en `.env` los mismos valores de `DB_NAME`, `DB_USER` y `DB_PASSWORD`.
 
 ```powershell
 python manage.py migrate
+python manage.py createsuperuser
 python manage.py runserver
 ```
 
-Abre http://127.0.0.1:8000/admin/ (para entrar necesitarás `python manage.py createsuperuser`).
+`createsuperuser` solicitará un nombre de usuario y una contraseña propia para el administrador inicial. No hay registro público ni credenciales predeterminadas. Inicia sesión en http://127.0.0.1:8000/login/; desde http://127.0.0.1:8000/admin/ el administrador puede crear usuarios, asignar grupos/roles y gestionar contraseñas.
 
 

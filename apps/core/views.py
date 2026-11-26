@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.contrib.admin.views.decorators import staff_member_required
+from django.shortcuts import redirect, render
 
 def dashboard(request):
     return render(request, "dashboard_preview.html")
@@ -280,8 +281,9 @@ def rector_module(request, module):
     )
 
 
+@staff_member_required
 def rector_usuarios(request):
-    return rector_module(request, "usuarios")
+    return redirect("admin:auth_user_changelist")
 
 
 def rector_materias(request):

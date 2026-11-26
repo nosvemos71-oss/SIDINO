@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     # Dashboard principal
-    path("", views.dashboard, name="dashboard"),
+    path("inicio/", views.dashboard, name="dashboard"),
 
     # Dashboards de roles
     path(

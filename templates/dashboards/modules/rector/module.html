@@ -11,7 +11,7 @@
 {% block user_role %}Rectora{% endblock %}
 
 {% block navigation %}
-<a href="/" class="nav-link">
+<a href="/inicio/" class="nav-link">
     <i class="fa-solid fa-house"></i>
     <span>Inicio</span>
 </a>
@@ -79,10 +79,13 @@
     <span>Configuración</span>
 </a>
 
-<a href="#" class="nav-link logout-link">
-    <i class="fa-solid fa-right-from-bracket"></i>
-    <span>Cerrar sesión</span>
-</a>
+<form action="{% url 'logout' %}" method="post" class="logout-form">
+    {% csrf_token %}
+    <button type="submit" class="nav-link logout-link">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Cerrar sesión</span>
+    </button>
+</form>
 {% endblock %}
 
 {% block topbar_avatar %}CR{% endblock %}
