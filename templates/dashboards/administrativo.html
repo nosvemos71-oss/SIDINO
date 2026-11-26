@@ -1,0 +1,357 @@
+
+{% extends 'layouts/dashboard_base.html' %}
+{% load static %}
+
+{% block title %}Panel Administrativo | SIDINO{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboards/administrativo.css' %}">
+{% endblock %}
+
+{% block avatar %}AD{% endblock %}
+{% block user_name %}Administrativo{% endblock %}
+{% block user_role %}Administrativo{% endblock %}
+
+{% block topbar_avatar %}AD{% endblock %}
+{% block topbar_name %}Administrativo{% endblock %}
+{% block topbar_role %}Gestión administrativa{% endblock %}
+
+{% block breadcrumb %}Inicio / Panel Administrativo{% endblock %}
+{% block page_title %}Panel Administrativo{% endblock %}
+
+{% block navigation %}
+
+
+<a href="/dashboard/administrativo/" class="nav-link active">
+    <i class="fa-solid fa-house"></i>
+    <span>Inicio</span>
+</a>
+
+<span class="nav-section-title">GESTIÓN ADMINISTRATIVA</span>
+
+<a href="/dashboard/administrativo/estudiantes/" class="nav-link">
+    <i class="fa-solid fa-user-graduate"></i>
+    <span>Estudiantes</span>
+</a>
+
+<a href="/dashboard/administrativo/boletines/" class="nav-link">
+    <i class="fa-solid fa-file-lines"></i>
+    <span>Boletines</span>
+</a>
+
+<span class="nav-section-title">INSTITUCIÓN</span>
+
+<a href="/dashboard/administrativo/historial/" class="nav-link">
+    <i class="fa-solid fa-clock-rotate-left"></i>
+    <span>Historial</span>
+</a>
+
+{% endblock %}
+
+{% block sidebar_footer %}
+<a href="/dashboard/configuracion/" class="nav-link">
+    <i class="fa-solid fa-gear"></i>
+    <span>Configuración</span>
+</a>
+
+<form action="{% url 'logout' %}" method="post" class="logout-form">
+    {% csrf_token %}
+    <button type="submit" class="nav-link logout-link">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Cerrar sesión</span>
+    </button>
+</form>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="admin-dashboard">
+
+    <!-- BIENVENIDA -->
+    <section class="admin-welcome">
+
+        <div class="admin-welcome-text">
+            <span class="admin-welcome-label">
+                PANEL ADMINISTRATIVO
+            </span>
+
+            <h2>¡Bienvenido al área administrativa!</h2>
+
+            <p>
+                Gestiona la información de los estudiantes,
+                consulta los registros académicos y organiza
+                los procesos administrativos de la institución.
+            </p>
+
+            <a href="#" class="admin-welcome-button">
+                <i class="fas fa-users"></i>
+                Gestionar estudiantes
+            </a>
+        </div>
+
+        <div class="admin-welcome-illustration">
+            <div class="admin-illustration-circle">
+                <i class="fas fa-school"></i>
+            </div>
+
+            <div class="admin-floating-icon admin-float-one">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+
+            <div class="admin-floating-icon admin-float-two">
+                <i class="fas fa-file-alt"></i>
+            </div>
+
+            <div class="admin-floating-icon admin-float-three">
+                <i class="fas fa-clipboard-check"></i>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- ESTADÍSTICAS -->
+    <section class="admin-stats-grid">
+
+        <article class="admin-stat-card">
+            <div class="admin-stat-icon students-icon">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+
+            <div class="admin-stat-info">
+                <span>Total de estudiantes</span>
+                <h3>0</h3>
+                <small>Estudiantes registrados</small>
+            </div>
+        </article>
+
+
+        <article class="admin-stat-card">
+            <div class="admin-stat-icon bulletin-icon">
+                <i class="fas fa-file-alt"></i>
+            </div>
+
+            <div class="admin-stat-info">
+                <span>Boletines generados</span>
+                <h3>0</h3>
+                <small>Registros académicos</small>
+            </div>
+        </article>
+
+
+        <article class="admin-stat-card">
+            <div class="admin-stat-icon records-icon">
+                <i class="fas fa-folder-open"></i>
+            </div>
+
+            <div class="admin-stat-info">
+                <span>Registros administrativos</span>
+                <h3>0</h3>
+                <small>Información gestionada</small>
+            </div>
+        </article>
+
+
+        <article class="admin-stat-card">
+            <div class="admin-stat-icon activity-icon">
+                <i class="fas fa-clock"></i>
+            </div>
+
+            <div class="admin-stat-info">
+                <span>Actividad reciente</span>
+                <h3>0</h3>
+                <small>Acciones registradas</small>
+            </div>
+        </article>
+
+    </section>
+
+
+    <!-- ACCESOS RÁPIDOS -->
+    <section class="admin-section">
+
+        <div class="admin-section-header">
+            <div>
+                <h3>Accesos rápidos</h3>
+                <p>Accede fácilmente a las funciones principales.</p>
+            </div>
+        </div>
+
+
+        <div class="admin-quick-grid">
+
+            <a href="#" class="admin-quick-card">
+                <div class="admin-quick-icon quick-students">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+
+                <div class="admin-quick-info">
+                    <h4>Estudiantes</h4>
+                    <p>Consultar y gestionar estudiantes.</p>
+                </div>
+
+                <i class="fas fa-arrow-right admin-quick-arrow"></i>
+            </a>
+
+
+            <a href="#" class="admin-quick-card">
+                <div class="admin-quick-icon quick-bulletins">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+
+                <div class="admin-quick-info">
+                    <h4>Boletines</h4>
+                    <p>Generar y consultar boletines.</p>
+                </div>
+
+                <i class="fas fa-arrow-right admin-quick-arrow"></i>
+            </a>
+
+
+            <a href="#" class="admin-quick-card">
+                <div class="admin-quick-icon quick-history">
+                    <i class="fas fa-history"></i>
+                </div>
+
+                <div class="admin-quick-info">
+                    <h4>Historial</h4>
+                    <p>Consultar las actividades realizadas.</p>
+                </div>
+
+                <i class="fas fa-arrow-right admin-quick-arrow"></i>
+            </a>
+
+
+            <a href="#" class="admin-quick-card">
+                <div class="admin-quick-icon quick-reports">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+
+                <div class="admin-quick-info">
+                    <h4>Información académica</h4>
+                    <p>Acceso a información institucional.</p>
+                </div>
+
+                <i class="fas fa-arrow-right admin-quick-arrow"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ESTUDIANTES -->
+    <section class="admin-section">
+
+        <div class="admin-section-header">
+            <div>
+                <h3>Estudiantes</h3>
+                <p>Resumen de la gestión estudiantil.</p>
+            </div>
+
+            <a href="#" class="admin-view-all">
+                Ver estudiantes
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+
+        <div class="admin-students-card">
+
+            <div class="admin-students-empty-icon">
+                <i class="fas fa-users"></i>
+            </div>
+
+            <div class="admin-students-empty-text">
+                <h4>Gestión de estudiantes</h4>
+
+                <p>
+                    Desde este espacio podrás consultar la información
+                    de los estudiantes, revisar sus datos personales,
+                    materias inscritas y registros académicos.
+                </p>
+            </div>
+
+            <a href="#" class="admin-primary-button">
+                <i class="fas fa-user-graduate"></i>
+                Ir a estudiantes
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOLETINES -->
+    <section class="admin-section">
+
+        <div class="admin-section-header">
+            <div>
+                <h3>Boletines académicos</h3>
+                <p>Consulta y organiza los boletines de los estudiantes.</p>
+            </div>
+        </div>
+
+
+        <div class="admin-bulletin-card">
+
+            <div class="admin-bulletin-icon">
+                <i class="fas fa-file-invoice"></i>
+            </div>
+
+            <div class="admin-bulletin-info">
+                <h4>Generación de boletines</h4>
+
+                <p>
+                    Accede a los registros académicos para consultar
+                    y generar los boletines correspondientes.
+                </p>
+            </div>
+
+            <a href="#" class="admin-primary-button">
+                <i class="fas fa-file-download"></i>
+                Generar boletines
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ACTIVIDAD RECIENTE -->
+    <section class="admin-section">
+
+        <div class="admin-section-header">
+            <div>
+                <h3>Actividad reciente</h3>
+                <p>Resumen de los últimos movimientos administrativos.</p>
+            </div>
+
+            <a href="#" class="admin-view-all">
+                Ver historial
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+
+        <div class="admin-activity-card">
+
+            <div class="admin-activity-empty-icon">
+                <i class="fas fa-history"></i>
+            </div>
+
+            <h4>Sin actividad reciente</h4>
+
+            <p>
+                Aquí aparecerán las actividades realizadas
+                dentro del sistema administrativo.
+            </p>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

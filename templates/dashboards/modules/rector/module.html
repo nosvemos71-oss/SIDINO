@@ -1,0 +1,332 @@
+
+{% extends "layouts/dashboard_base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboards/rector_modules.css' %}">
+{% endblock %}
+
+{% block avatar %}CR{% endblock %}
+{% block user_name %}Carol Trujillo{% endblock %}
+{% block user_role %}Rectora{% endblock %}
+
+{% block navigation %}
+<a href="/inicio/" class="nav-link">
+    <i class="fa-solid fa-house"></i>
+    <span>Inicio</span>
+</a>
+
+<a href="/dashboard/rector/usuarios/" class="nav-link {% if module_key == 'usuarios' %}active{% endif %}">
+    <i class="fa-solid fa-users"></i>
+    <span>Usuarios</span>
+</a>
+
+<a href="/dashboard/rector/materias/" class="nav-link {% if module_key == 'materias' %}active{% endif %}">
+    <i class="fa-solid fa-book"></i>
+    <span>Materias</span>
+</a>
+
+<a href="/dashboard/rector/cursos/" class="nav-link {% if module_key == 'cursos' %}active{% endif %}">
+    <i class="fa-solid fa-graduation-cap"></i>
+    <span>Cursos</span>
+</a>
+
+<a href="/dashboard/rector/salones/" class="nav-link {% if module_key == 'salones' %}active{% endif %}">
+    <i class="fa-solid fa-door-open"></i>
+    <span>Salones</span>
+</a>
+
+<a href="/dashboard/rector/horarios/" class="nav-link {% if module_key == 'horarios' %}active{% endif %}">
+    <i class="fa-solid fa-calendar"></i>
+    <span>Horarios</span>
+</a>
+
+<a href="/dashboard/rector/periodos/" class="nav-link {% if module_key == 'periodos' %}active{% endif %}">
+    <i class="fa-solid fa-calendar-days"></i>
+    <span>Periodos</span>
+</a>
+
+<a href="/dashboard/rector/asignaciones/" class="nav-link {% if module_key == 'asignaciones' %}active{% endif %}">
+    <i class="fa-solid fa-clipboard-list"></i>
+    <span>Asignaciones</span>
+</a>
+
+<a href="/dashboard/rector/matriculas/" class="nav-link {% if module_key == 'matriculas' %}active{% endif %}">
+    <i class="fa-solid fa-file-lines"></i>
+    <span>Matrículas</span>
+</a>
+
+<a href="/dashboard/rector/acudientes/" class="nav-link {% if module_key == 'acudientes' %}active{% endif %}">
+    <i class="fa-solid fa-user-group"></i>
+    <span>Acudientes</span>
+</a>
+
+<a href="/dashboard/rector/historial/" class="nav-link {% if module_key == 'historial' %}active{% endif %}">
+    <i class="fa-solid fa-clock-rotate-left"></i>
+    <span>Historial</span>
+</a>
+
+<a href="/dashboard/rector/reportes/" class="nav-link {% if module_key == 'reportes' %}active{% endif %}">
+    <i class="fa-solid fa-chart-column"></i>
+    <span>Reportes</span>
+</a>
+{% endblock %}
+
+{% block sidebar_footer %}
+
+<a href="{% url 'configuracion' %}" class="nav-link">
+    <i class="fa-solid fa-gear"></i>
+    <span>Configuración</span>
+</a>
+
+<form action="{% url 'logout' %}" method="post" class="logout-form">
+    {% csrf_token %}
+    <button type="submit" class="nav-link logout-link">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Cerrar sesión</span>
+    </button>
+</form>
+{% endblock %}
+
+{% block topbar_avatar %}CR{% endblock %}
+{% block topbar_name %}Carol Trujillo{% endblock %}
+{% block topbar_role %}Rectora{% endblock %}
+
+{% block breadcrumb %}
+Inicio / Rector / {{ module.title }}
+{% endblock %}
+
+{% block page_title %}
+{{ module.title }}
+{% endblock %}
+
+{% block content %}
+<div class="rector-module" data-module="{{ module_key }}">
+
+    <!-- ENCABEZADO -->
+    <section class="module-heading">
+        <div class="module-heading-info">
+            <div class="module-icon">
+                <i class="fa-solid {{ module.icon }}"></i>
+            </div>
+
+            <div>
+                <h1>{{ module.title }}</h1>
+                <p>{{ module.subtitle }}</p>
+            </div>
+        </div>
+
+        {% if module.button %}
+        <button class="module-primary-btn" id="openModuleForm">
+            <i class="fa-solid fa-plus"></i>
+            {{ module.button }}
+        </button>
+        {% endif %}
+    </section>
+
+    <!-- ESTADÍSTICAS -->
+    {% if module.stats %}
+    <section class="module-stats">
+
+        {% for stat in module.stats %}
+        <article class="module-stat-card">
+            <div class="module-stat-icon">
+                <i class="fa-solid {{ stat.icon }}"></i>
+            </div>
+
+            <div>
+                <p>{{ stat.label }}</p>
+                <h2>{{ stat.value }}</h2>
+            </div>
+        </article>
+        {% endfor %}
+
+    </section>
+    {% endif %}
+
+    <!-- FILTROS Y BÚSQUEDA -->
+    <section class="module-toolbar">
+
+        <div class="module-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+                type="search"
+                id="moduleSearch"
+                placeholder="Buscar en {{ module.title|lower }}..."
+            >
+        </div>
+
+        <div class="module-toolbar-actions">
+            <button class="module-secondary-btn" id="clearSearch">
+                <i class="fa-solid fa-rotate-left"></i>
+                Restablecer
+            </button>
+        </div>
+
+    </section>
+
+    <!-- TABLA -->
+    <section class="module-table-card">
+
+        <div class="module-table-header">
+            <div>
+                <h2>Listado general</h2>
+                <p>Consulta la información registrada en este módulo.</p>
+            </div>
+
+            <span class="module-count">
+                {{ module.rows|length }} registros
+            </span>
+        </div>
+
+        <div class="module-table-container">
+            <table class="module-table" id="moduleTable">
+
+                <thead>
+                    <tr>
+                        {% for column in module.columns %}
+                        <th>{{ column }}</th>
+                        {% endfor %}
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for row in module.rows %}
+                    <tr>
+                        {% for value in row %}
+                        <td>
+                            {% if forloop.last %}
+                                <span class="module-status
+                                    {% if value == 'Activo' or value == 'Activa' or value == 'Disponible' or value == 'Matriculado' or value == 'Finalizado' or value == 'Registrado' %}
+                                        status-success
+                                    {% elif value == 'Pendiente' or value == 'En proceso' %}
+                                        status-warning
+                                    {% elif value == 'En uso' %}
+                                        status-info
+                                    {% else %}
+                                        status-neutral
+                                    {% endif %}">
+                                    {{ value }}
+                                </span>
+                            {% else %}
+                                {{ value }}
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+
+                        <td>
+                            <div class="module-row-actions">
+                                <button class="row-action view-action" title="Visualizar">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+
+                                <button class="row-action edit-action" title="Editar">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+
+                                <button class="row-action delete-action" title="Eliminar">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="20" class="module-empty">
+                            No hay registros disponibles.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+        <div class="module-table-footer">
+            <span id="visibleRows">
+                Mostrando {{ module.rows|length }} registros
+            </span>
+        </div>
+
+    </section>
+
+    <!-- MODAL DE FORMULARIO -->
+    <div class="module-modal" id="moduleModal">
+
+        <div class="module-modal-content">
+
+            <div class="module-modal-header">
+                <div>
+                    <h2 id="modalTitle">Nuevo registro</h2>
+                    <p>Completa la información del formulario.</p>
+                </div>
+
+                <button class="modal-close" id="closeModuleForm">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="moduleForm">
+
+                <div class="module-form-grid">
+                    {% for field in module.fields %}
+                    <div class="module-form-group">
+                        <label>{{ field }}</label>
+                        <input
+                            type="text"
+                            name="field_{{ forloop.counter }}"
+                            placeholder="Ingrese {{ field|lower }}"
+                        >
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="module-form-actions">
+                    <button type="button" class="module-secondary-btn" id="cancelModuleForm">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="module-primary-btn">
+                        <i class="fa-solid fa-check"></i>
+                        Guardar
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- MODAL DE VISUALIZACIÓN -->
+    <div class="module-modal" id="viewModal">
+        <div class="module-modal-content">
+
+            <div class="module-modal-header">
+                <div>
+                    <h2>Información del registro</h2>
+                    <p>Detalle de la información seleccionada.</p>
+                </div>
+
+                <button class="modal-close closeViewModal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="viewRecordContent" class="module-view-content"></div>
+
+            <div class="module-form-actions">
+                <button class="module-secondary-btn closeViewModal">
+                    Cerrar
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/dashboards/rector_modules.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,626 @@
+
+/* ==========================================
+   SIDINO - PANEL ESTUDIANTE
+========================================== */
+
+.student-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* ==========================================
+   BIENVENIDA
+========================================== */
+
+.student-welcome {
+    background: linear-gradient(135deg, #17477f, #3980ce);
+    border-radius: 18px;
+    padding: 35px;
+    min-height: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    overflow: hidden;
+}
+
+.student-welcome-info {
+    max-width: 650px;
+}
+
+.student-welcome-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    opacity: 0.75;
+}
+
+.student-welcome-info h2 {
+    font-size: 28px;
+    margin: 12px 0;
+    font-weight: 700;
+}
+
+.student-welcome-info p {
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: 0.9;
+    max-width: 540px;
+    margin-bottom: 22px;
+}
+
+.student-primary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: #2864a7;
+    padding: 12px 18px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.student-primary-button:hover {
+    background: #edf5ff;
+    transform: translateY(-2px);
+}
+
+.student-welcome-illustration {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.student-welcome-illustration i {
+    font-size: 100px;
+    color: rgba(255,255,255,0.85);
+}
+
+/* ==========================================
+   ESTADÍSTICAS
+========================================== */
+
+.student-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.student-stat-card {
+    background: white;
+    border: 1px solid #edf0f5;
+    border-radius: 14px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: 0.3s;
+}
+
+.student-stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
+
+.student-stat-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+}
+
+.student-stat-title {
+    font-size: 12px;
+    color: #7c8798;
+}
+
+.student-stat-card h3 {
+    font-size: 25px;
+    color: #263448;
+    margin: 5px 0;
+}
+
+.student-stat-card p {
+    font-size: 11px;
+    color: #929baa;
+    margin: 0;
+}
+
+/* ==========================================
+   COLORES
+========================================== */
+
+.blue {
+    background: #eaf2ff;
+    color: #3777d3;
+}
+
+.purple {
+    background: #f0eaff;
+    color: #8659ce;
+}
+
+.green {
+    background: #e6f8ef;
+    color: #36a675;
+}
+
+.orange {
+    background: #fff2e5;
+    color: #e79742;
+}
+
+.red {
+    background: #ffeaea;
+    color: #d66565;
+}
+
+/* ==========================================
+   SECCIONES
+========================================== */
+
+.student-section {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.student-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.student-section-header h2 {
+    font-size: 18px;
+    color: #263448;
+    margin: 0 0 6px;
+}
+
+.student-section-header p {
+    font-size: 12px;
+    color: #8b96a6;
+    margin: 0;
+}
+
+.student-see-more {
+    color: #3777d3;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ==========================================
+   ACCESOS RÁPIDOS
+========================================== */
+
+.student-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.student-quick-card {
+    background: white;
+    border: 1px solid #edf0f5;
+    border-radius: 14px;
+    padding: 22px;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}
+
+.student-quick-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    border-color: #d7e5fa;
+}
+
+.student-quick-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 17px;
+}
+
+.student-quick-card h3 {
+    font-size: 14px;
+    color: #263448;
+    margin: 0 0 8px;
+}
+
+.student-quick-card p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #8792a2;
+    margin: 0;
+    padding-right: 10px;
+}
+
+.student-quick-arrow {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: #aab4c2;
+    font-size: 12px;
+}
+
+/* ==========================================
+   CALIFICACIONES
+========================================== */
+
+.student-grades-card {
+    background: white;
+    border: 1px solid #edf0f5;
+    border-radius: 14px;
+    padding: 10px 24px;
+}
+
+.student-grade-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 55px;
+    gap: 22px;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #f0f2f6;
+}
+
+.student-grade-row:last-child {
+    border-bottom: none;
+}
+
+.student-subject {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.subject-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.student-subject h4 {
+    font-size: 12px;
+    color: #334155;
+    margin: 0 0 5px;
+}
+
+.student-subject p {
+    font-size: 10px;
+    color: #9aa5b4;
+    margin: 0;
+}
+
+.student-grade-progress {
+    width: 100%;
+}
+
+.student-grade-bar {
+    height: 8px;
+    background: #edf1f6;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.grade-fill {
+    height: 100%;
+    border-radius: 10px;
+}
+
+.blue-fill {
+    background: #4d89dc;
+}
+
+.purple-fill {
+    background: #956bdb;
+}
+
+.green-fill {
+    background: #44b586;
+}
+
+.orange-fill {
+    background: #e7a04d;
+}
+
+.red-fill {
+    background: #dc7474;
+}
+
+.student-grade {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.excellent {
+    background: #e6f8ef;
+    color: #35a575;
+}
+
+.good {
+    background: #eaf2ff;
+    color: #477fc9;
+}
+
+.average {
+    background: #fff3e2;
+    color: #d89135;
+}
+
+/* ==========================================
+   PANEL INFERIOR
+========================================== */
+
+.student-bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.student-panel {
+    background: white;
+    border: 1px solid #edf0f5;
+    border-radius: 14px;
+    padding: 23px;
+}
+
+.student-panel > .student-section-header {
+    margin-bottom: 18px;
+}
+
+/* ==========================================
+   HORARIO
+========================================== */
+
+.student-schedule-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.student-schedule-item {
+    display: grid;
+    grid-template-columns: 55px 4px 1fr auto;
+    gap: 15px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f2f6;
+}
+
+.student-schedule-item:last-child {
+    border-bottom: none;
+}
+
+.schedule-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.schedule-time strong {
+    font-size: 14px;
+    color: #334155;
+}
+
+.schedule-time span {
+    font-size: 10px;
+    color: #9aa5b4;
+    margin-top: 3px;
+}
+
+.schedule-line {
+    width: 4px;
+    height: 42px;
+    border-radius: 10px;
+}
+
+.blue-line {
+    background: #4d89dc;
+}
+
+.purple-line {
+    background: #956bdb;
+}
+
+.green-line {
+    background: #44b586;
+}
+
+.schedule-details h4 {
+    font-size: 12px;
+    color: #334155;
+    margin: 0 0 5px;
+}
+
+.schedule-details p {
+    font-size: 10px;
+    color: #8b96a6;
+    margin: 0;
+}
+
+.schedule-badge {
+    padding: 6px 9px;
+    font-size: 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.blue-badge {
+    background: #eaf2ff;
+    color: #3777d3;
+}
+
+/* ==========================================
+   OBSERVACIONES
+========================================== */
+
+.student-observation {
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f2f6;
+}
+
+.student-observation:last-of-type {
+    border-bottom: none;
+}
+
+.observation-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.observation-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.observation-header h4 {
+    font-size: 12px;
+    color: #334155;
+    margin: 0 0 5px;
+}
+
+.observation-header span {
+    font-size: 10px;
+    color: #9aa5b4;
+}
+
+.student-observation > p {
+    font-size: 11px;
+    color: #7d8999;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.student-observations-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    color: #3777d3;
+    padding-top: 16px;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1200px) {
+
+    .student-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .student-quick-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .student-grade-row {
+        grid-template-columns: 180px 1fr 50px;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .student-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .student-welcome-illustration {
+        width: 140px;
+        height: 140px;
+    }
+
+    .student-welcome-illustration i {
+        font-size: 75px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .student-welcome {
+        padding: 25px;
+    }
+
+    .student-welcome-info h2 {
+        font-size: 22px;
+    }
+
+    .student-welcome-illustration {
+        display: none;
+    }
+
+    .student-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .student-quick-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .student-grade-row {
+        grid-template-columns: 1fr 55px;
+        gap: 12px;
+    }
+
+    .student-grade-progress {
+        grid-column: 1 / 2;
+        grid-row: 2;
+    }
+
+    .student-grade {
+        grid-column: 2;
+        grid-row: 1 / 3;
+    }
+
+    .student-panel {
+        padding: 17px;
+    }
+
+    .student-schedule-item {
+        grid-template-columns: 48px 4px 1fr;
+        gap: 10px;
+    }
+
+    .schedule-badge {
+        display: none;
+    }
+}

@@ -1,0 +1,100 @@
+
+{% extends "layouts/dashboard_base.html" %}
+{% load static %}
+
+{% block title %}{{ module.title }} | SIDINO{% endblock %}
+
+{% block user_name %}{{ role }}{% endblock %}
+{% block user_role %}{{ role_description }}{% endblock %}
+{% block avatar %}{{ role|slice:":1" }}{% endblock %}
+
+{% block topbar_name %}{{ role }}{% endblock %}
+{% block topbar_role %}{{ role_description }}{% endblock %}
+{% block topbar_avatar %}{{ role|slice:":1" }}{% endblock %}
+
+{% block breadcrumb %}{{ role }} / {{ module.title }}{% endblock %}
+{% block page_title %}{{ module.title }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboards/modules.css' %}">
+{% endblock %}
+
+{% block navigation %}
+{% for item in navigation %}
+<a href="{{ item.1 }}" class="nav-link {% if active_url == item.1 %}active{% endif %}">
+    <i class="fa-solid {{ item.2 }}"></i>
+    <span>{{ item.0 }}</span>
+</a>
+{% endfor %}
+{% endblock %}
+
+{% block content %}
+<div class="module-dashboard">
+
+    <div class="module-welcome">
+        <div>
+            <span class="module-eyebrow">SIDINO · {{ role|upper }}</span>
+            <h2>{{ module.title }}</h2>
+            <p>{{ module.description }}</p>
+        </div>
+        <i class="fa-solid fa-folder-open"></i>
+    </div>
+
+    <div class="module-stats">
+        {% for stat in module.stats %}
+        <div class="module-stat-card">
+            <span>{{ stat.0 }}</span>
+            <strong>{{ stat.1 }}</strong>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="module-table-panel">
+        <div class="module-table-header">
+            <div>
+                <span class="module-eyebrow">GESTIÓN DE INFORMACIÓN</span>
+                <h3>{{ module.title }}</h3>
+            </div>
+
+            <input type="search" id="moduleSearch"
+                   placeholder="Buscar información...">
+        </div>
+
+        <div class="module-table-wrapper">
+            <table class="module-table" id="moduleTable">
+                <thead>
+                    <tr>
+                        {% for column in module.columns %}
+                        <th>{{ column }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for row in module.rows %}
+                    <tr>
+                        {% for value in row %}
+                        <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="10">No hay información registrada.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="module-table-footer">
+            <span>{{ module.rows|length }} registros de demostración</span>
+            <span>SIDINO · Gestión institucional</span>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/dashboards/modules.js' %}"></script>
+{% endblock %}

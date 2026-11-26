@@ -1,0 +1,496 @@
+
+{% extends 'layouts/dashboard_base.html' %}
+{% load static %}
+
+{% block title %}Panel Acudiente | SIDINO{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboards/acudiente.css' %}">
+{% endblock %}
+
+{% block avatar %}AC{% endblock %}
+{% block user_name %}Acudiente{% endblock %}
+{% block user_role %}Padre de familia{% endblock %}
+
+{% block topbar_avatar %}AC{% endblock %}
+{% block topbar_name %}Acudiente{% endblock %}
+{% block topbar_role %}Padre de familia{% endblock %}
+
+{% block breadcrumb %}Inicio / Portal del Acudiente{% endblock %}
+{% block page_title %}Portal del Acudiente{% endblock %}
+
+{% block navigation %}
+<a href="/dashboard/acudiente/" class="nav-link">
+    <i class="fa-solid fa-house"></i><span>Inicio</span>
+</a>
+<a href="/dashboard/acudiente/notas/" class="nav-link">
+    <i class="fa-solid fa-clipboard-list"></i><span>Notas de mi hijo</span>
+</a>
+<a href="/dashboard/acudiente/observaciones/" class="nav-link">
+    <i class="fa-solid fa-comment-dots"></i><span>Observaciones</span>
+</a>
+<a href="/dashboard/acudiente/citaciones/" class="nav-link">
+    <i class="fa-solid fa-calendar-check"></i><span>Citaciones</span>
+</a>
+<a href="/dashboard/acudiente/boletines/" class="nav-link">
+    <i class="fa-solid fa-file-lines"></i><span>Boletines</span>
+</a>
+{% endblock %}
+
+{% block sidebar_footer %}
+<a href="/dashboard/configuracion/" class="nav-link">
+    <i class="fa-solid fa-gear"></i>
+    <span>Configuración</span>
+</a>
+
+<form action="{% url 'logout' %}" method="post" class="logout-form">
+    {% csrf_token %}
+    <button type="submit" class="nav-link logout-link">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Cerrar sesión</span>
+    </button>
+</form>
+{% endblock %}
+
+{% block content %}
+
+<div class="guardian-dashboard">
+
+    <!-- Bienvenida -->
+    <section class="guardian-welcome">
+
+        <div class="guardian-welcome-info">
+            <span class="guardian-welcome-label">PORTAL FAMILIAR</span>
+
+            <h2>¡Bienvenido al portal de familias!</h2>
+
+            <p>
+                Acompaña el proceso educativo de tu hijo.
+                Consulta sus calificaciones, conoce su desempeño,
+                revisa las observaciones de sus docentes y mantente
+                informado sobre las actividades del colegio.
+            </p>
+
+            <a href="#" class="guardian-primary-button">
+                <i class="fas fa-graduation-cap"></i>
+                Consultar rendimiento
+            </a>
+        </div>
+
+        <div class="guardian-welcome-illustration">
+            <i class="fas fa-user-friends"></i>
+        </div>
+
+    </section>
+
+    <!-- Información del estudiante -->
+    <section class="guardian-student-card">
+
+        <div class="guardian-student-profile">
+
+            <div class="guardian-student-avatar">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+
+            <div class="guardian-student-info">
+                <span>ESTUDIANTE VINCULADO</span>
+                <h2>Estudiante de ejemplo</h2>
+                <p>Grado 10° A · Jornada mañana</p>
+            </div>
+
+        </div>
+
+        <div class="guardian-student-details">
+
+            <div>
+                <span>Institución</span>
+                <strong>Institución Educativa</strong>
+            </div>
+
+            <div>
+                <span>Periodo académico</span>
+                <strong>Periodo 3</strong>
+            </div>
+
+            <div>
+                <span>Estado</span>
+                <strong class="student-active-status">
+                    <i class="fas fa-circle"></i>
+                    Activo
+                </strong>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Estadísticas -->
+    <section class="guardian-stats">
+
+        <div class="guardian-stat-card">
+
+            <div class="guardian-stat-icon blue">
+                <i class="fas fa-chart-line"></i>
+            </div>
+
+            <div>
+                <span class="guardian-stat-title">Promedio académico</span>
+                <h3>4.2</h3>
+                <p>Desempeño general</p>
+            </div>
+
+        </div>
+
+        <div class="guardian-stat-card">
+
+            <div class="guardian-stat-icon green">
+                <i class="fas fa-check-circle"></i>
+            </div>
+
+            <div>
+                <span class="guardian-stat-title">Asistencia</span>
+                <h3>96%</h3>
+                <p>Asistencia acumulada</p>
+            </div>
+
+        </div>
+
+        <div class="guardian-stat-card">
+
+            <div class="guardian-stat-icon purple">
+                <i class="fas fa-book"></i>
+            </div>
+
+            <div>
+                <span class="guardian-stat-title">Materias</span>
+                <h3>12</h3>
+                <p>Asignaturas cursadas</p>
+            </div>
+
+        </div>
+
+        <div class="guardian-stat-card">
+
+            <div class="guardian-stat-icon orange">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+
+            <div>
+                <span class="guardian-stat-title">Citaciones</span>
+                <h3>1</h3>
+                <p>Pendiente de atención</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Accesos rápidos -->
+    <section class="guardian-section">
+
+        <div class="guardian-section-header">
+            <div>
+                <h2>Accesos rápidos</h2>
+                <p>Consulta la información más importante de tu hijo.</p>
+            </div>
+        </div>
+
+        <div class="guardian-quick-grid">
+
+            <a href="#" class="guardian-quick-card">
+
+                <div class="guardian-quick-icon blue">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+
+                <h3>Notas académicas</h3>
+                <p>Consulta las calificaciones por materia y periodo.</p>
+
+                <i class="fas fa-arrow-right guardian-quick-arrow"></i>
+            </a>
+
+            <a href="#" class="guardian-quick-card">
+
+                <div class="guardian-quick-icon purple">
+                    <i class="fas fa-comment-dots"></i>
+                </div>
+
+                <h3>Observaciones</h3>
+                <p>Conoce los comentarios y seguimiento de los docentes.</p>
+
+                <i class="fas fa-arrow-right guardian-quick-arrow"></i>
+            </a>
+
+            <a href="#" class="guardian-quick-card">
+
+                <div class="guardian-quick-icon orange">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+
+                <h3>Citaciones</h3>
+                <p>Revisa las reuniones y compromisos escolares.</p>
+
+                <i class="fas fa-arrow-right guardian-quick-arrow"></i>
+            </a>
+
+            <a href="#" class="guardian-quick-card">
+
+                <div class="guardian-quick-icon green">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+
+                <h3>Boletines</h3>
+                <p>Consulta los informes académicos de cada periodo.</p>
+
+                <i class="fas fa-arrow-right guardian-quick-arrow"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Rendimiento -->
+    <section class="guardian-section">
+
+        <div class="guardian-section-header">
+            <div>
+                <h2>Rendimiento académico</h2>
+                <p>Resumen de las calificaciones por asignatura.</p>
+            </div>
+
+            <a href="#" class="guardian-see-more">
+                Ver todas <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="guardian-grades-card">
+
+            <div class="guardian-grade-row">
+
+                <div class="guardian-subject">
+                    <div class="subject-icon blue">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+
+                    <div>
+                        <h4>Matemáticas</h4>
+                        <p>Periodo académico actual</p>
+                    </div>
+                </div>
+
+                <div class="guardian-grade-progress">
+                    <div class="guardian-grade-bar">
+                        <div class="grade-fill blue-fill" style="width:85%"></div>
+                    </div>
+                </div>
+
+                <span class="guardian-grade excellent">4.5</span>
+
+            </div>
+
+            <div class="guardian-grade-row">
+
+                <div class="guardian-subject">
+                    <div class="subject-icon purple">
+                        <i class="fas fa-book"></i>
+                    </div>
+
+                    <div>
+                        <h4>Lengua castellana</h4>
+                        <p>Periodo académico actual</p>
+                    </div>
+                </div>
+
+                <div class="guardian-grade-progress">
+                    <div class="guardian-grade-bar">
+                        <div class="grade-fill purple-fill" style="width:78%"></div>
+                    </div>
+                </div>
+
+                <span class="guardian-grade good">4.0</span>
+
+            </div>
+
+            <div class="guardian-grade-row">
+
+                <div class="guardian-subject">
+                    <div class="subject-icon green">
+                        <i class="fas fa-flask"></i>
+                    </div>
+
+                    <div>
+                        <h4>Ciencias naturales</h4>
+                        <p>Periodo académico actual</p>
+                    </div>
+                </div>
+
+                <div class="guardian-grade-progress">
+                    <div class="guardian-grade-bar">
+                        <div class="grade-fill green-fill" style="width:92%"></div>
+                    </div>
+                </div>
+
+                <span class="guardian-grade excellent">4.8</span>
+
+            </div>
+
+            <div class="guardian-grade-row">
+
+                <div class="guardian-subject">
+                    <div class="subject-icon orange">
+                        <i class="fas fa-globe"></i>
+                    </div>
+
+                    <div>
+                        <h4>Ciencias sociales</h4>
+                        <p>Periodo académico actual</p>
+                    </div>
+                </div>
+
+                <div class="guardian-grade-progress">
+                    <div class="guardian-grade-bar">
+                        <div class="grade-fill orange-fill" style="width:70%"></div>
+                    </div>
+                </div>
+
+                <span class="guardian-grade good">3.8</span>
+
+            </div>
+
+            <div class="guardian-grade-row">
+
+                <div class="guardian-subject">
+                    <div class="subject-icon red">
+                        <i class="fas fa-language"></i>
+                    </div>
+
+                    <div>
+                        <h4>Inglés</h4>
+                        <p>Periodo académico actual</p>
+                    </div>
+                </div>
+
+                <div class="guardian-grade-progress">
+                    <div class="guardian-grade-bar">
+                        <div class="grade-fill red-fill" style="width:65%"></div>
+                    </div>
+                </div>
+
+                <span class="guardian-grade average">3.5</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Parte inferior -->
+    <section class="guardian-bottom-grid">
+
+        <!-- Citaciones -->
+        <div class="guardian-panel">
+
+            <div class="guardian-section-header">
+                <div>
+                    <h2>Próximas citaciones</h2>
+                    <p>Compromisos pendientes con la institución.</p>
+                </div>
+            </div>
+
+            <div class="guardian-appointment-card">
+
+                <div class="appointment-date">
+                    <span>NOV</span>
+                    <strong>28</strong>
+                </div>
+
+                <div class="appointment-info">
+                    <h4>Reunión de seguimiento académico</h4>
+                    <p>
+                        <i class="fas fa-clock"></i>
+                        8:00 a. m.
+                    </p>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i>
+                        Coordinación académica
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="guardian-appointment-status">
+                <span class="appointment-pending">
+                    <i class="fas fa-clock"></i>
+                    Pendiente de asistencia
+                </span>
+            </div>
+
+            <a href="#" class="guardian-panel-link">
+                Consultar todas las citaciones
+                <i class="fas fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+        <!-- Observaciones -->
+        <div class="guardian-panel">
+
+            <div class="guardian-section-header">
+                <div>
+                    <h2>Observaciones recientes</h2>
+                    <p>Información compartida por los docentes.</p>
+                </div>
+            </div>
+
+            <div class="guardian-observation">
+
+                <div class="guardian-observation-header">
+                    <div class="observation-icon blue">
+                        <i class="fas fa-user"></i>
+                    </div>
+
+                    <div>
+                        <h4>Matemáticas</h4>
+                        <span>Docente · Hoy</span>
+                    </div>
+                </div>
+
+                <p>
+                    Se destaca el buen desempeño, la participación
+                    y el compromiso durante las actividades de clase.
+                </p>
+
+            </div>
+
+            <div class="guardian-observation">
+
+                <div class="guardian-observation-header">
+                    <div class="observation-icon purple">
+                        <i class="fas fa-user"></i>
+                    </div>
+
+                    <div>
+                        <h4>Lengua castellana</h4>
+                        <span>Docente · Ayer</span>
+                    </div>
+                </div>
+
+                <p>
+                    Se recomienda acompañamiento en la entrega
+                    de actividades y fortalecimiento de la lectura.
+                </p>
+
+            </div>
+
+            <a href="#" class="guardian-panel-link">
+                Ver todas las observaciones
+                <i class="fas fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

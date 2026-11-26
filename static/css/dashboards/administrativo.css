@@ -1,0 +1,647 @@
+
+/* =========================================
+   SIDINO - PANEL ADMINISTRATIVO
+   Estilos exclusivos del contenido
+   ========================================= */
+
+.admin-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    width: 100%;
+}
+
+
+/* =========================================
+   BIENVENIDA
+   ========================================= */
+
+.admin-welcome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    min-height: 220px;
+    padding: 35px 40px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #fff7ed, #ffedd5);
+    border: 1px solid #fed7aa;
+}
+
+.admin-welcome-text {
+    max-width: 600px;
+    z-index: 2;
+}
+
+.admin-welcome-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: #ea580c;
+    margin-bottom: 12px;
+}
+
+.admin-welcome-text h2 {
+    font-size: 27px;
+    font-weight: 800;
+    color: #243247;
+    margin: 0 0 12px;
+}
+
+.admin-welcome-text p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #64748b;
+    max-width: 500px;
+    margin-bottom: 22px;
+}
+
+.admin-welcome-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 18px;
+    background: #f97316;
+    color: white;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.admin-welcome-button:hover {
+    background: #ea580c;
+    transform: translateY(-2px);
+    color: white;
+}
+
+
+/* =========================================
+   ILUSTRACIÓN DE BIENVENIDA
+   ========================================= */
+
+.admin-welcome-illustration {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    min-width: 220px;
+    height: 180px;
+    margin-right: 30px;
+}
+
+.admin-illustration-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.65);
+    border: 2px solid rgba(249, 115, 22, 0.15);
+}
+
+.admin-illustration-circle i {
+    font-size: 65px;
+    color: #f97316;
+}
+
+.admin-floating-icon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 15px;
+    background: white;
+    color: #f97316;
+    box-shadow: 0 8px 20px rgba(100, 100, 100, 0.10);
+    font-size: 18px;
+}
+
+.admin-float-one {
+    top: 5px;
+    right: 8px;
+}
+
+.admin-float-two {
+    bottom: 5px;
+    left: 8px;
+    color: #3b82f6;
+}
+
+.admin-float-three {
+    bottom: 10px;
+    right: 10px;
+    color: #10b981;
+}
+
+
+/* =========================================
+   ESTADÍSTICAS
+   ========================================= */
+
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.admin-stat-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 22px;
+    background: white;
+    border: 1px solid #e9edf3;
+    border-radius: 17px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.admin-stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    font-size: 19px;
+}
+
+.students-icon {
+    background: #eff6ff;
+    color: #3b82f6;
+}
+
+.bulletin-icon {
+    background: #fff7ed;
+    color: #f97316;
+}
+
+.records-icon {
+    background: #f5f3ff;
+    color: #8b5cf6;
+}
+
+.activity-icon {
+    background: #ecfdf5;
+    color: #10b981;
+}
+
+.admin-stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.admin-stat-info span {
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.admin-stat-info h3 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #243247;
+    margin: 0;
+}
+
+.admin-stat-info small {
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+
+/* =========================================
+   SECCIONES GENERALES
+   ========================================= */
+
+.admin-section {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.admin-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.admin-section-header h3 {
+    margin: 0 0 5px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #243247;
+}
+
+.admin-section-header p {
+    margin: 0;
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.admin-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #f97316;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.admin-view-all:hover {
+    color: #ea580c;
+    gap: 12px;
+}
+
+
+/* =========================================
+   ACCESOS RÁPIDOS
+   ========================================= */
+
+.admin-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.admin-quick-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #e9edf3;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.admin-quick-card:hover {
+    transform: translateY(-3px);
+    border-color: #fed7aa;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+}
+
+.admin-quick-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    min-width: 52px;
+    height: 52px;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+.quick-students {
+    color: #3b82f6;
+    background: #eff6ff;
+}
+
+.quick-bulletins {
+    color: #f97316;
+    background: #fff7ed;
+}
+
+.quick-history {
+    color: #8b5cf6;
+    background: #f5f3ff;
+}
+
+.quick-reports {
+    color: #10b981;
+    background: #ecfdf5;
+}
+
+.admin-quick-info {
+    flex: 1;
+}
+
+.admin-quick-info h4 {
+    margin: 0 0 5px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #243247;
+}
+
+.admin-quick-info p {
+    margin: 0;
+    font-size: 12px;
+    color: #94a3b8;
+    line-height: 1.5;
+}
+
+.admin-quick-arrow {
+    color: #cbd5e1;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.admin-quick-card:hover .admin-quick-arrow {
+    color: #f97316;
+    transform: translateX(4px);
+}
+
+
+/* =========================================
+   TARJETA DE ESTUDIANTES
+   ========================================= */
+
+.admin-students-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 38px 25px;
+    background: white;
+    border: 1px solid #e9edf3;
+    border-radius: 18px;
+}
+
+.admin-students-empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 75px;
+    border-radius: 22px;
+    background: #eff6ff;
+    color: #3b82f6;
+    font-size: 30px;
+    margin-bottom: 18px;
+}
+
+.admin-students-empty-text h4 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #243247;
+    margin: 0 0 8px;
+}
+
+.admin-students-empty-text p {
+    max-width: 500px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #94a3b8;
+    margin: 0 auto 22px;
+}
+
+
+/* =========================================
+   BOTONES PRINCIPALES
+   ========================================= */
+
+.admin-primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 11px 17px;
+    background: #f97316;
+    color: white;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.admin-primary-button:hover {
+    background: #ea580c;
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   BOLETINES
+   ========================================= */
+
+.admin-bulletin-card {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 25px;
+    background: white;
+    border: 1px solid #e9edf3;
+    border-radius: 18px;
+}
+
+.admin-bulletin-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    min-width: 65px;
+    height: 65px;
+    border-radius: 18px;
+    background: #fff7ed;
+    color: #f97316;
+    font-size: 26px;
+}
+
+.admin-bulletin-info {
+    flex: 1;
+}
+
+.admin-bulletin-info h4 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #243247;
+}
+
+.admin-bulletin-info p {
+    margin: 0;
+    max-width: 500px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #94a3b8;
+}
+
+
+/* =========================================
+   ACTIVIDAD RECIENTE
+   ========================================= */
+
+.admin-activity-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 35px 25px;
+    background: white;
+    border: 1px solid #e9edf3;
+    border-radius: 18px;
+}
+
+.admin-activity-empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    border-radius: 20px;
+    background: #f5f3ff;
+    color: #8b5cf6;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.admin-activity-card h4 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #243247;
+}
+
+.admin-activity-card p {
+    margin: 0;
+    max-width: 450px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #94a3b8;
+}
+
+
+/* =========================================
+   RESPONSIVE - TABLETS
+   ========================================= */
+
+@media (max-width: 1200px) {
+
+    .admin-stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================
+   RESPONSIVE - CELULARES
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .admin-dashboard {
+        gap: 22px;
+    }
+
+    .admin-welcome {
+        padding: 25px;
+        min-height: auto;
+    }
+
+    .admin-welcome-text h2 {
+        font-size: 22px;
+    }
+
+    .admin-welcome-text p {
+        font-size: 13px;
+    }
+
+    .admin-welcome-illustration {
+        width: 140px;
+        min-width: 140px;
+        margin-right: 0;
+    }
+
+    .admin-illustration-circle {
+        width: 105px;
+        height: 105px;
+    }
+
+    .admin-illustration-circle i {
+        font-size: 45px;
+    }
+
+    .admin-floating-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 15px;
+    }
+
+    .admin-quick-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-bulletin-card {
+        flex-wrap: wrap;
+    }
+
+    .admin-bulletin-info {
+        min-width: 180px;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .admin-welcome {
+        padding: 22px;
+    }
+
+    .admin-welcome-illustration {
+        display: none;
+    }
+
+    .admin-welcome-text h2 {
+        font-size: 20px;
+    }
+
+    .admin-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .admin-stat-card {
+        padding: 17px;
+    }
+
+    .admin-section-header {
+        align-items: flex-start;
+    }
+
+    .admin-section-header h3 {
+        font-size: 16px;
+    }
+
+    .admin-section-header p {
+        font-size: 12px;
+    }
+
+    .admin-bulletin-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-bulletin-card .admin-primary-button {
+        width: 100%;
+    }
+
+    .admin-welcome-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+}

@@ -91,13 +91,11 @@ class RolePermissionTests(TestCase):
         
         self.assertEqual(response.status_code, 403)
         self.assertNotIn(b"DATO_PROTEGIDO", response.content)
-
+        
     def test_anonymous_user_cannot_access_protected_view(self):
-
         response = self.client.get("/protected/")
-
         self.assertEqual(response.status_code, 302)
-        self.assertIn("/accounts/login/", response.url)
+        self.assertIn("/login/", response.url)
 
     def test_coordinator_can_access_coordinator_view(self):
 

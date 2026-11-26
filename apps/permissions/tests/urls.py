@@ -1,3 +1,5 @@
+
+from django.contrib.auth import views as auth_views
 from django.http import HttpResponse
 from django.urls import path
 
@@ -18,6 +20,11 @@ def coordinator_view(request):
 
 
 urlpatterns = [
+    path(
+        "login/",
+        auth_views.LoginView.as_view(),
+        name="login",
+    ),
     path("protected/", protected_grades),
     path("coordinator/", coordinator_view),
 ]

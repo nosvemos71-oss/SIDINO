@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión | SIDINO</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="login-page">
+    <main class="login-layout">
+        <section class="login-card" aria-labelledby="login-title">
+            <div class="login-brand">
+                <span class="login-logo"><i class="fa-solid fa-eye"></i></span>
+                <div>
+                    <strong>SIDINO</strong>
+                    <span>Gestión Educativa</span>
+                </div>
+            </div>
+
+            <div class="login-heading">
+                <span class="login-eyebrow">Acceso institucional</span>
+                <h1 id="login-title">Bienvenido</h1>
+                <p>Ingresa tus credenciales para continuar.</p>
+            </div>
+
+            {% if form.errors %}
+            <div class="login-error" role="alert">
+                Usuario o contraseña incorrectos. Inténtalo de nuevo.
+            </div>
+            {% endif %}
+
+            <form method="post" class="login-form">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
+
+                <label for="id_username">Usuario</label>
+                <div class="login-input">
+                    <i class="fa-regular fa-user" aria-hidden="true"></i>
+                    <input
+                        id="id_username"
+                        type="text"
+                        name="username"
+                        autocomplete="username"
+                        placeholder="Nombre de usuario"
+                        value="{{ form.username.value|default_if_none:'' }}"
+                        required
+                        autofocus
+                    >
+                </div>
+
+                <label for="id_password">Contraseña</label>
+                <div class="login-input">
+                    <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                    <input
+                        id="id_password"
+                        type="password"
+                        name="password"
+                        autocomplete="current-password"
+                        placeholder="Ingresa tu contraseña"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="login-submit">
+                    Iniciar sesión
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+            </form>
+
+            <p class="login-note">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                El acceso es administrado por la institución.
+            </p>
+        </section>
+    </main>
+</body>
+</html>
