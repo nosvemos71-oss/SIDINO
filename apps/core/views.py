@@ -1,25 +1,74 @@
-from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect, render
 
-def dashboard(request):
-    return render(request, "dashboard_preview.html")
+from apps.permissions.decorators import role_required
+from apps.permissions.roles import (
+    ROLE_RECTOR,
+    ROLE_ADMINISTRATIVO,
+    ROLE_COORDINADOR,
+    ROLE_DOCENTE,
+    ROLE_ESTUDIANTE,
+    ROLE_ACUDIENTE,
+)
 
+
+@login_required
+def dashboard(request):
+    user = request.user
+
+    if user.is_superuser:
+        return redirect("dashboard_rector")
+
+    role_dashboards = {
+        ROLE_RECTOR: "dashboard_rector",
+        ROLE_ADMINISTRATIVO: "dashboard_administrativo",
+        ROLE_COORDINADOR: "dashboard_coordinador",
+        ROLE_DOCENTE: "dashboard_docente",
+        ROLE_ESTUDIANTE: "dashboard_estudiante",
+        ROLE_ACUDIENTE: "dashboard_acudiente",
+    }
+
+    roles = list(
+        user.groups.filter(
+            name__in=role_dashboards.keys()
+        ).values_list("name", flat=True)
+    )
+
+    if len(roles) != 1:
+        raise PermissionDenied(
+            "El usuario debe tener exactamente un rol institucional."
+        )
+
+    return redirect(role_dashboards[roles[0]])
+
+
+@role_required(ROLE_RECTOR)
 def dashboard_rector(request):
     return render(request, "dashboard_preview.html")
 
+
+@role_required(ROLE_ADMINISTRATIVO)
 def dashboard_administrativo(request):
     return render(request, "dashboards/administrativo.html")
 
+
+@role_required(ROLE_COORDINADOR)
 def dashboard_coordinador(request):
     return render(request, "dashboards/coordinador.html")
 
 
+@role_required(ROLE_DOCENTE)
 def dashboard_docente(request):
     return render(request, "dashboards/docente.html")
 
+
+@role_required(ROLE_ESTUDIANTE)
 def dashboard_estudiante(request):
     return render(request, "dashboards/estudiante.html")
 
+
+@role_required(ROLE_ACUDIENTE)
 def dashboard_acudiente(request):
     return render(request, "dashboards/acudiente.html")
 
@@ -263,6 +312,7 @@ RECTOR_MODULES = {
 }
 
 
+@role_required(ROLE_RECTOR)
 def rector_module(request, module):
     data = RECTOR_MODULES.get(module)
 
@@ -281,9 +331,9 @@ def rector_module(request, module):
     )
 
 
-@staff_member_required
+@role_required(ROLE_RECTOR)
 def rector_usuarios(request):
-    return redirect("admin:auth_user_changelist")
+    return redirect("users:list")
 
 
 def rector_materias(request):
@@ -450,12 +500,19 @@ PANEL_MODULES = {
 }
 
 
+@login_required
 def panel_module(request, role, module):
     panel = PANEL_MODULES.get(role)
 
     if not panel or module not in panel["modules"]:
         from django.http import Http404
         raise Http404("Módulo no encontrado")
+
+    if not request.user.is_superuser:
+        if not request.user.groups.filter(
+            name=panel["role"]
+        ).exists():
+            raise PermissionDenied
 
     data = panel["modules"][module]
 
@@ -741,6 +798,7 @@ PANEL_MODULES.update({
 # CONFIGURACIÓN GENERAL SIDINO
 # ==========================================
 
+@role_required(ROLE_RECTOR, ROLE_ADMINISTRATIVO)
 def configuracion(request):
     return render(request, "dashboards/modules/shared/configuracion.html")
 

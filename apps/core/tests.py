@@ -1,4 +1,6 @@
+
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from django.test import TestCase
 
 
@@ -6,7 +8,8 @@ class AuthenticationTests(TestCase):
     def setUp(self):
         self.username = "institution-admin"
         self.password = "A-secure-test-password-2026"
-        get_user_model().objects.create_user(
+
+        self.user = get_user_model().objects.create_user(
             username=self.username,
             password=self.password,
         )
@@ -85,27 +88,22 @@ class AuthenticationTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_regular_user_cannot_manage_accounts(self):
-        self.client.login(username=self.username, password=self.password)
+        self.client.force_login(self.user)
 
         response = self.client.get("/dashboard/rector/usuarios/")
 
-        self.assertRedirects(
-            response,
-            "/admin/login/?next=/dashboard/rector/usuarios/",
-            fetch_redirect_response=False,
-        )
+        self.assertEqual(response.status_code, 403)
 
     def test_admin_user_management_opens_django_admin(self):
-        admin = get_user_model().objects.create_superuser(
-            username="sidino-superuser",
-            password="Another-secure-test-password-2026",
-        )
-        self.client.force_login(admin)
+        rector_group, _ = Group.objects.get_or_create(name="Rector")
+        self.user.groups.add(rector_group)
+
+        self.client.force_login(self.user)
 
         response = self.client.get("/dashboard/rector/usuarios/")
 
         self.assertRedirects(
             response,
-            "/admin/auth/user/",
+            "/usuarios/",
             fetch_redirect_response=False,
         )
