@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | SIDINO</title>
+</head>
+<body>
+
+    <h1>{{ title }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            {% if is_creation %}
+                Crear usuario
+            {% else %}
+                Guardar cambios
+            {% endif %}
+        </button>
+    </form>
+
+    {% if institutional_user %}
+        <a href="{% url 'users:detail' institutional_user.pk %}">
+            Cancelar
+        </a>
+    {% else %}
+        <a href="{% url 'users:list' %}">
+            Cancelar
+        </a>
+    {% endif %}
+
+</body>
+</html>

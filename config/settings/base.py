@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     # Aplicaciones del proyecto
     "apps.core",
     "apps.permissions.apps.PermissionsConfig",
+    "apps.users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [

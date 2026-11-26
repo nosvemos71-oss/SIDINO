@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del usuario | SIDINO</title>
+</head>
+<body>
+
+    <h1>Detalle del usuario</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <p>
+        <strong>Usuario:</strong>
+        {{ institutional_user.username }}
+    </p>
+
+    <p>
+        <strong>Nombres:</strong>
+        {{ institutional_user.first_name }}
+    </p>
+
+    <p>
+        <strong>Apellidos:</strong>
+        {{ institutional_user.last_name }}
+    </p>
+
+    <p>
+        <strong>Correo:</strong>
+        {{ institutional_user.email }}
+    </p>
+
+    <p>
+        <strong>Rol:</strong>
+        {% for group in institutional_user.groups.all %}
+            {{ group.name }}
+        {% empty %}
+            Sin rol asignado
+        {% endfor %}
+    </p>
+
+    <p>
+        <strong>Estado:</strong>
+        {% if institutional_user.is_active %}
+            Activo
+        {% else %}
+            Inactivo
+        {% endif %}
+    </p>
+
+    <p>
+        <strong>Fecha de creación:</strong>
+        {{ institutional_user.date_joined }}
+    </p>
+
+    <a href="{% url 'users:update' institutional_user.pk %}">
+        Editar usuario
+    </a>
+
+    {% if institutional_user.pk != request.user.pk %}
+        <a href="{% url 'users:toggle_active' institutional_user.pk %}">
+            {% if institutional_user.is_active %}
+                Desactivar usuario
+            {% else %}
+                Activar usuario
+            {% endif %}
+        </a>
+    {% endif %}
+
+    <a href="{% url 'users:list' %}">
+        Volver al listado
+    </a>
+
+</body>
+</html>
