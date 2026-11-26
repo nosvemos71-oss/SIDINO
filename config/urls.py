@@ -13,5 +13,13 @@ urlpatterns = [
     path("", login_view, name="home"),
     path("login/", login_view, name="login"),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
+
+    # Gestión personalizada de usuarios
+    path(
+        "dashboard/rector/usuarios/",
+        include("apps.users.urls"),
+    ),
+
+    # Rutas principales de SIDINO
     path("", include("apps.core.urls")),
 ]

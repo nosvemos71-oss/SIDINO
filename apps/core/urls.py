@@ -40,11 +40,6 @@ urlpatterns = [
 
     # Módulos del Rector
     path(
-        "dashboard/rector/usuarios/",
-        views.rector_usuarios,
-        name="rector_usuarios",
-    ),
-    path(
         "dashboard/rector/materias/",
         views.rector_materias,
         name="rector_materias",
