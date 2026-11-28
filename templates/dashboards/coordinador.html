@@ -8,7 +8,13 @@
 <link rel="stylesheet" href="{% static 'css/dashboards/coordinador.css' %}">
 {% endblock %}
 
+{% block avatar %}CO{% endblock %}
+{% block user_name %}Coordinador{% endblock %}
+{% block user_role %}Coordinación Académica{% endblock %}
 
+{% block topbar_avatar %}CO{% endblock %}
+{% block topbar_name %}Coordinador{% endblock %}
+{% block topbar_role %}Coordinación Académica{% endblock %}
 
 {% block breadcrumb %}Inicio / Panel de Coordinación{% endblock %}
 {% block page_title %}Panel de Coordinación{% endblock %}
@@ -59,10 +65,13 @@
     <span>Configuración</span>
 </a>
 
-<a href="#" class="nav-link logout-link">
-    <i class="fas fa-sign-out-alt"></i>
-    <span>Cerrar sesión</span>
-</a>
+<form action="{% url 'logout' %}" method="post" class="logout-form">
+    {% csrf_token %}
+    <button type="submit" class="nav-link logout-link">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Cerrar sesión</span>
+    </button>
+</form>
 
 {% endblock %}
 

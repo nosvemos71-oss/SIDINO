@@ -4,7 +4,13 @@
 
 {% block title %}Panel Rector | SIDINO{% endblock %}
 
+{% block user_name %}Rector{% endblock %}
+{% block user_role %}Dirección institucional{% endblock %}
+{% block avatar %}R{% endblock %}
 
+{% block topbar_name %}Rector{% endblock %}
+{% block topbar_role %}Dirección institucional{% endblock %}
+{% block topbar_avatar %}R{% endblock %}
 
 {% block breadcrumb %}Rector / Inicio{% endblock %}
 {% block page_title %}Panel de control{% endblock %}
@@ -22,15 +28,12 @@
 
 <span class="nav-section-title">GESTIÓN INSTITUCIONAL</span>
 
+{% if request.user.is_superuser or perms.auth.view_user or perms.auth.change_user %}
 <a href="/dashboard/rector/usuarios/" class="nav-link">
     <i class="fa-solid fa-users"></i>
     <span>Gestión de usuarios</span>
 </a>
-
-<a href="/dashboard/rector/usuarios/" class="nav-link">
-    <i class="fa-solid fa-user-plus"></i>
-    <span>Crear usuarios</span>
-</a>
+{% endif %}
 
 <span class="nav-section-title">GESTIÓN ACADÉMICA</span>
 

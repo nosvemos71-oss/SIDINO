@@ -8,7 +8,13 @@
 <link rel="stylesheet" href="{% static 'css/dashboards/administrativo.css' %}">
 {% endblock %}
 
+{% block avatar %}AD{% endblock %}
+{% block user_name %}Administrativo{% endblock %}
+{% block user_role %}Administrativo{% endblock %}
 
+{% block topbar_avatar %}AD{% endblock %}
+{% block topbar_name %}Administrativo{% endblock %}
+{% block topbar_role %}Gestión administrativa{% endblock %}
 
 {% block breadcrumb %}Inicio / Panel Administrativo{% endblock %}
 {% block page_title %}Panel Administrativo{% endblock %}
@@ -48,10 +54,13 @@
     <span>Configuración</span>
 </a>
 
-<a href="#" class="nav-link logout-link">
-    <i class="fas fa-sign-out-alt"></i>
-    <span>Cerrar sesión</span>
-</a>
+<form action="{% url 'logout' %}" method="post" class="logout-form">
+    {% csrf_token %}
+    <button type="submit" class="nav-link logout-link">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Cerrar sesión</span>
+    </button>
+</form>
 
 {% endblock %}
 

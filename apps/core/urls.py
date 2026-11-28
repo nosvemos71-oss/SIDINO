@@ -1,11 +1,10 @@
 
-from django.conf import settings
 from django.urls import path
 from . import views
 
 urlpatterns = [
     # Dashboard principal
-    path("", views.dashboard, name="dashboard"),
+    path("inicio/", views.dashboard, name="dashboard"),
 
     # Dashboards de roles
     path(
@@ -40,11 +39,6 @@ urlpatterns = [
     ),
 
     # Módulos del Rector
-    path(
-        "dashboard/rector/usuarios/",
-        views.rector_usuarios,
-        name="rector_usuarios",
-    ),
     path(
         "dashboard/rector/materias/",
         views.rector_materias,
@@ -207,10 +201,3 @@ path(
     name="configuracion",
 ),
 ]
-
-# Login de desarrollo: solo existe con DEBUG=True. Reemplazado por el login real.
-if settings.DEBUG:
-    urlpatterns += [
-        path("dev/login/", views.dev_login, name="dev_login"),
-        path("dev/login/<int:id_usuario>/", views.dev_login, name="dev_login_as"),
-    ]

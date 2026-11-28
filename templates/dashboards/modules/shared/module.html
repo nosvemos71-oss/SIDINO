@@ -4,7 +4,13 @@
 
 {% block title %}{{ module.title }} | SIDINO{% endblock %}
 
+{% block user_name %}{{ role }}{% endblock %}
+{% block user_role %}{{ role_description }}{% endblock %}
+{% block avatar %}{{ role|slice:":1" }}{% endblock %}
 
+{% block topbar_name %}{{ role }}{% endblock %}
+{% block topbar_role %}{{ role_description }}{% endblock %}
+{% block topbar_avatar %}{{ role|slice:":1" }}{% endblock %}
 
 {% block breadcrumb %}{{ role }} / {{ module.title }}{% endblock %}
 {% block page_title %}{{ module.title }}{% endblock %}

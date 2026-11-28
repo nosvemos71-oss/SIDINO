@@ -1,14 +1,22 @@
-from django.conf import settings
-from django.http import Http404
+from django.contrib.admin.views.decorators import staff_member_required
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect, render
 
-from .access import SESSION_KEY, redirect_to_own_dashboard, role_required
-from .models import Usuario
+from .roles import (
+    ROLE_GROUP_NAMES,
+    any_role_required,
+    get_active_role,
+    role_required,
+)
 
 
 def dashboard(request):
-    """Raíz del sitio: envía a cada usuario a SU dashboard según su rol."""
-    return redirect_to_own_dashboard(request)
+    role = get_active_role(request.user)
+    if role is None:
+        if request.user.is_staff:
+            return redirect("admin:index")
+        raise PermissionDenied
+    return redirect(f"dashboard_{role}")
 
 
 @role_required("rector")
@@ -285,7 +293,7 @@ def rector_module(request, module):
     data = RECTOR_MODULES.get(module)
 
     if data is None:
-        raise Http404("Módulo no encontrado")
+        return render(request, "404.html", status=404)
 
     context = {
         "module_key": module,
@@ -299,8 +307,16 @@ def rector_module(request, module):
     )
 
 
+@staff_member_required
+@role_required("rector")
 def rector_usuarios(request):
-    return rector_module(request, "usuarios")
+    if not (
+        request.user.is_superuser
+        or request.user.has_perm("auth.view_user")
+        or request.user.has_perm("auth.change_user")
+    ):
+        raise PermissionDenied
+    return redirect("admin:auth_user_changelist")
 
 
 def rector_materias(request):
@@ -467,11 +483,18 @@ PANEL_MODULES = {
 }
 
 
-@role_required(kwarg="role")
 def panel_module(request, role, module):
     panel = PANEL_MODULES.get(role)
 
-    if not panel or module not in panel["modules"]:
+    if not panel:
+        from django.http import Http404
+        raise Http404("Módulo no encontrado")
+
+    if get_active_role(request.user) != role:
+        raise PermissionDenied
+
+    if module not in panel["modules"]:
+        from django.http import Http404
         raise Http404("Módulo no encontrado")
 
     data = panel["modules"][module]
@@ -758,23 +781,11 @@ PANEL_MODULES.update({
 # CONFIGURACIÓN GENERAL SIDINO
 # ==========================================
 
-@role_required()
+@any_role_required
 def configuracion(request):
-    return render(request, "dashboards/modules/shared/configuracion.html")
+    role = get_active_role(request.user)
+    return render(request, "dashboards/modules/shared/configuracion.html", {
+        "dashboard_url": f"/dashboard/{role}/",
+        "dashboard_role": ROLE_GROUP_NAMES[role],
+    })
 
-
-
-# ==========================================
-# LOGIN DE DESARROLLO (solo DEBUG)
-# Sirve para probar los dashboards mientras no exista el login real.
-# Se registra únicamente si DEBUG=True (ver urls.py).
-# ==========================================
-
-def dev_login(request, id_usuario=None):
-    if not settings.DEBUG:
-        raise Http404
-    if id_usuario is not None:
-        request.session[SESSION_KEY] = id_usuario
-        return redirect("dashboard")
-    usuarios = Usuario.objects.select_related("rol").order_by("rol_id", "nombre")
-    return render(request, "dev_login.html", {"usuarios": usuarios})
