@@ -1,0 +1,31 @@
+{% extends "academics/base.html" %}
+{% block title %}Grupos | SIDINO{% endblock %}
+{% block academic_title %}Cursos y grupos{% endblock %}
+{% block academic_breadcrumb %}Grupos{% endblock %}
+{% block academic_content %}
+<section class="module-heading"><div><h1>Cursos y grupos</h1><p>Asocia cada sección a un curso y periodo, y matricula estudiantes.</p></div></section>
+<section class="module-table-card" style="padding:1.5rem;margin-bottom:1.5rem">
+    <h2>Crear grupo</h2>
+    {% if not courses or not periods %}<p>Primero registra al menos un curso y un periodo.</p>{% endif %}
+    <form method="post">{% csrf_token %}<input type="hidden" name="action" value="create_group">
+        {{ group_form.non_field_errors }}
+        {% for field in group_form %}<div style="margin-bottom:1rem"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{{ field.errors }}</div>{% endfor %}
+        <button class="module-primary-btn" type="submit" {% if not courses or not periods %}disabled{% endif %}>Guardar grupo</button>
+    </form>
+</section>
+{% if enrollment_form and enrollment_form.errors %}<div role="alert">{{ enrollment_form.errors }}</div>{% endif %}
+{% for row in group_rows %}
+<section class="module-table-card" style="padding:1.5rem;margin-bottom:1rem">
+    <h2>{{ row.group.course.name }} — Grupo {{ row.group.name }} <small>({{ row.group.period.name }})</small></h2>
+    <form method="post" style="display:flex;gap:.75rem;align-items:end;flex-wrap:wrap">{% csrf_token %}
+        <input type="hidden" name="action" value="enroll"><input type="hidden" name="group_id" value="{{ row.group.pk }}">
+        <div><label for="student-{{ row.group.pk }}">Inscribir estudiante</label><select id="student-{{ row.group.pk }}" name="student" required>
+            <option value="">Selecciona un estudiante</option>{% for student in row.enrollment_form.fields.student.queryset %}<option value="{{ student.pk }}">{{ student.get_full_name|default:student.username }}</option>{% endfor %}
+        </select></div>
+        <button class="module-primary-btn" type="submit">Inscribir</button>
+    </form>
+    <h3>Estudiantes ({{ row.group.enrollments.count }})</h3>
+    <ul>{% for enrollment in row.group.enrollments.all %}<li>{{ enrollment.student.get_full_name|default:enrollment.student.username }}</li>{% empty %}<li>No hay estudiantes inscritos.</li>{% endfor %}</ul>
+</section>
+{% empty %}<section class="module-table-card" style="padding:1.5rem">Aún no hay grupos registrados.</section>{% endfor %}
+{% endblock %}

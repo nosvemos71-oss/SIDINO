@@ -1,0 +1,23 @@
+{% extends "academics/base.html" %}
+{% block title %}Crear estudiante | SIDINO{% endblock %}
+{% block academic_title %}Crear estudiante{% endblock %}
+{% block academic_breadcrumb %}Estudiantes / Crear{% endblock %}
+{% block academic_content %}
+<section class="module-heading">
+    <div><h1>Crear estudiante</h1><p>Registra una cuenta estudiantil para luego asociarla a un grupo.</p></div>
+</section>
+<section class="module-table-card" style="padding:1.5rem;max-width:40rem">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+        <div style="margin-bottom:1rem">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {{ field.errors }}
+        </div>
+        {% endfor %}
+        <button class="module-primary-btn" type="submit">Crear estudiante</button>
+    </form>
+</section>
+{% endblock %}

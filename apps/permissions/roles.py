@@ -66,6 +66,7 @@ ROLE_PERMISSIONS = {
 
     ROLE_COORDINADOR: (
         "view_students",
+        "manage_students",
         "manage_courses",
         "manage_subjects",
         "assign_teachers",

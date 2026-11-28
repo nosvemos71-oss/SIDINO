@@ -1,0 +1,21 @@
+{% extends "academics/base.html" %}
+{% block title %}Periodos | SIDINO{% endblock %}
+{% block academic_title %}Periodos académicos{% endblock %}
+{% block academic_breadcrumb %}Periodos{% endblock %}
+{% block academic_content %}
+<section class="module-heading"><div><h1>Periodos académicos</h1><p>Define los periodos vigentes para organizar los grupos.</p></div></section>
+<section class="module-table-card" style="padding:1.5rem;margin-bottom:1.5rem">
+    <h2>Crear periodo</h2>
+    <form method="post">{% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}<div style="margin-bottom:1rem"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{{ field.errors }}</div>{% endfor %}
+        <button class="module-primary-btn" type="submit">Guardar periodo</button>
+    </form>
+</section>
+<section class="module-table-card"><h2>Periodos registrados</h2>
+    <table class="module-table"><thead><tr><th>Periodo</th><th>Inicio</th><th>Cierre</th></tr></thead><tbody>
+    {% for period in periods %}<tr><td>{{ period.name }}</td><td>{{ period.start_date|date:"d/m/Y" }}</td><td>{{ period.end_date|date:"d/m/Y" }}</td></tr>
+    {% empty %}<tr><td colspan="3">Aún no hay periodos.</td></tr>{% endfor %}
+    </tbody></table>
+</section>
+{% endblock %}

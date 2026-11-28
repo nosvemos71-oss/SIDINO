@@ -94,6 +94,7 @@ Usa en `.env` los mismos valores de `DB_NAME`, `DB_USER` y `DB_PASSWORD`.
 
 ```powershell
 python manage.py migrate
+python manage.py create_roles
 python manage.py createsuperuser
 python manage.py runserver
 ```

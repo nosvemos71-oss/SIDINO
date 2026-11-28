@@ -1,0 +1,22 @@
+{% extends "academics/base.html" %}
+{% block title %}Cursos | SIDINO{% endblock %}
+{% block academic_title %}Cursos{% endblock %}
+{% block academic_breadcrumb %}Cursos{% endblock %}
+{% block academic_content %}
+<section class="module-heading"><div><h1>Cursos</h1><p>Define los grados o niveles que se organizan en grupos.</p></div></section>
+<section class="module-table-card" style="padding:1.5rem;margin-bottom:1.5rem">
+    <h2>Crear curso</h2>
+    <form method="post">{% csrf_token %}
+        {{ form.non_field_errors }}
+        <label for="{{ form.name.id_for_label }}">Nombre del curso</label>
+        {{ form.name }} {{ form.name.errors }}
+        <button class="module-primary-btn" type="submit">Guardar curso</button>
+    </form>
+</section>
+<section class="module-table-card"><h2>Cursos registrados</h2>
+    <table class="module-table"><thead><tr><th>Curso</th><th>Grupos</th></tr></thead><tbody>
+    {% for course in courses %}<tr><td>{{ course.name }}</td><td>{{ course.groups.count }}</td></tr>
+    {% empty %}<tr><td colspan="2">Aún no hay cursos.</td></tr>{% endfor %}
+    </tbody></table>
+</section>
+{% endblock %}

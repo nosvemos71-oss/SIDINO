@@ -19,6 +19,7 @@ urlpatterns = [
         "dashboard/rector/usuarios/",
         include("apps.users.urls"),
     ),
+    path("academics/", include("apps.academics.urls")),
 
     # Rutas principales de SIDINO
     path("", include("apps.core.urls")),

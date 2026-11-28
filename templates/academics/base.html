@@ -1,0 +1,31 @@
+{% extends "layouts/dashboard_base.html" %}
+
+{% block avatar %}{{ request.user.username|slice:":1"|upper }}{% endblock %}
+{% block user_name %}{{ request.user.get_full_name|default:request.user.username }}{% endblock %}
+{% block user_role %}Gestión académica{% endblock %}
+{% block topbar_avatar %}{{ request.user.username|slice:":1"|upper }}{% endblock %}
+{% block topbar_name %}{{ request.user.get_full_name|default:request.user.username }}{% endblock %}
+{% block topbar_role %}Gestión académica{% endblock %}
+{% block breadcrumb %}Gestión académica / {% block academic_breadcrumb %}{% endblock %}{% endblock %}
+{% block page_title %}{% block academic_title %}Gestión académica{% endblock %}{% endblock %}
+
+{% block navigation %}
+<a href="{% url 'dashboard' %}" class="nav-link"><i class="fa-solid fa-house"></i><span>Mi panel</span></a>
+<a href="{% url 'academics:courses' %}" class="nav-link"><i class="fa-solid fa-book"></i><span>Cursos</span></a>
+<a href="{% url 'academics:periods' %}" class="nav-link"><i class="fa-solid fa-calendar-days"></i><span>Periodos</span></a>
+<a href="{% url 'academics:groups' %}" class="nav-link"><i class="fa-solid fa-people-group"></i><span>Grupos</span></a>
+{% endblock %}
+
+{% block sidebar_footer %}
+<form action="{% url 'logout' %}" method="post" class="logout-form">
+    {% csrf_token %}
+    <button type="submit" class="nav-link logout-link"><i class="fa-solid fa-right-from-bracket"></i><span>Cerrar sesión</span></button>
+</form>
+{% endblock %}
+
+{% block content %}
+<div class="rector-module">
+    {% if messages %}{% for message in messages %}<p role="status">{{ message }}</p>{% endfor %}{% endif %}
+    {% block academic_content %}{% endblock %}
+</div>
+{% endblock %}

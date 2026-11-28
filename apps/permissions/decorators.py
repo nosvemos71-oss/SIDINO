@@ -1,9 +1,7 @@
 from functools import wraps
 
-from django.contrib.auth.decorators import (
-    login_required,
-    permission_required as django_permission_required,
-)
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import redirect_to_login
 from django.core.exceptions import PermissionDenied
 
 
@@ -50,12 +48,19 @@ def permission_required(permission):
     """
 
     def decorator(view_func):
+        @wraps(view_func)
+        def wrapped_view(request, *args, **kwargs):
+            user = request.user
+            if not user.is_authenticated:
+                return redirect_to_login(request.get_full_path())
+            if user.has_perm(permission):
+                return view_func(request, *args, **kwargs)
+            if not user.groups.exists():
+                return redirect_to_login(
+                    request.get_full_path(), "/admin/login/"
+                )
+            raise PermissionDenied
 
-        protected_view = django_permission_required(
-            permission,
-            raise_exception=True,
-        )(view_func)
-
-        return login_required(protected_view)
+        return wrapped_view
 
     return decorator

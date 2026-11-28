@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 
 from apps.permissions.decorators import permission_required
 
@@ -16,6 +17,9 @@ User = get_user_model()
 
 @permission_required("permissions.manage_users")
 def user_list(request):
+    if request.user.is_superuser:
+        return redirect(reverse("admin:auth_user_changelist"))
+
     search = request.GET.get("q", "").strip()
 
     users = User.objects.prefetch_related("groups").order_by(
